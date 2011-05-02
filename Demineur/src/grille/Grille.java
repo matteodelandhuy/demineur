@@ -1,5 +1,6 @@
 package grille;
 
+import divers.MyException;
 import java.util.Random;
 import java.util.Vector;
 
@@ -35,11 +36,36 @@ public class Grille
     //
     public Grille(int nbLignes, int nbColonnes, int nbMines)
     {
-        this._nbColonnes = nbColonnes;
-        this._nbLignes = nbLignes;
-        this._nbMines = nbMines;
-        this._grille = new Vector(0, _nbLignes * _nbColonnes);
-        this.initialiser();
+        try
+        {
+            if (nbLignes <= 0)
+            {
+                throw new MyException("Erreur : nombre de lignes négatif ou nul.");
+            } else
+            {
+                this._nbColonnes = nbColonnes;
+            }
+            if (nbColonnes <= 0)
+            {
+                throw new MyException("Erreur : nombre de colonnes négatif ou nul.");
+            } else
+            {
+                this._nbLignes = nbLignes;
+            }
+            if (nbMines <= 0)
+            {
+                throw new MyException("Erreur : nombre de mines négatif ou nul.");
+            } else if (nbMines > nbLignes * nbColonnes)
+            {
+                throw new MyException("Erreur : plus de mines que de cases.");
+            }
+            this._nbMines = nbMines;
+            this._grille = new Vector(0, _nbLignes * _nbColonnes);
+            this.initialiser();
+        } catch (MyException e)
+        {
+            System.out.println(e.get_messageErreur());
+        }
     }
 
     private void initialiser()
@@ -47,20 +73,17 @@ public class Grille
         Random r = new Random();
         Vector<Integer> indexMines = new Vector<Integer>();
         int nb;
-        // tirage aléatoire de _nbMines chiffres qui seront les indexs des cases minées
+        // tirage aléatoire sans remise de _nbMines chiffres qui seront les indexs des cases minées
         for (int i = 0; i < _nbMines; i++)
         {
             do
             {
-               // tirage sans remise
-               nb =  r.nextInt(this.length())+1;
-            }
-            while (indexMines.indexOf(nb) != -1);
+                nb = r.nextInt(this.length()) + 1;
+            } while (indexMines.indexOf(nb) != -1);
             indexMines.addElement(nb);
-            System.out.println(indexMines.get(i));
+            //System.out.println(indexMines.get(i));
         }
-
-        //initialisation
+        //initialisation des cases
         for (int i = 1; i <= this.length(); i++)
         {
             if (indexMines.indexOf(i) != -1) // si l'indice est dans indiceMines
@@ -82,18 +105,24 @@ public class Grille
     public String toString()
     {
         String grille = "";
-        for (int i = 0; i < this.length();i++)
+        for (int i = 0; i < this.length(); i++)
         {
             if (i % _nbColonnes == 0)
+            {
                 grille += "\n";
-            grille += ""+_grille.get(i)+"\t";
+            }
+            grille += "" + _grille.get(i) + "\t";
         }
         return grille;
     }
 
-    public static void main(String [] args)
+    public static void main(String[] args)
     {
         Grille g = new Grille(3, 3, 3);
         System.out.println(g);
+        Grille g2 = new Grille(0, 3, 3);
+        Grille g3 = new Grille(3, 0, 3);
+        Grille g4 = new Grille(3, 3, 10);
+        Grille g5 = new Grille(3, 3, 0);
     }
 }
