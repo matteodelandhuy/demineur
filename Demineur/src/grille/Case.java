@@ -4,7 +4,7 @@ package grille;
  * 
  * @author Maxime GASTON
  */
-public abstract class Case
+public class Case
 {
 
     /**
