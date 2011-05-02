@@ -10,7 +10,16 @@ import java.util.Vector;
  */
 public class Grille
 {
-
+/**
+ * Constante utilisée par le constructeur par défaut pour le nombre de lignes
+ */
+    private static final int DEF_NB_LIGNES = 5;
+/**
+ * Constante utilisée par le constructeur par défaut pour le nombre de colonnes
+ */    private static final int DEF_NB_COLONNES = 5;
+/**
+ * Constante utilisée par le constructeur par défaut pour le nombre de mines
+ */    private static final int DEF_NB_MINES = 10;
     /**
      * Tableau de Case constituant le principal composant du jeu.
      */
@@ -28,12 +37,21 @@ public class Grille
      */
     private int _nbMines;
 
-    //
-    //
-    //  Vérifier que _nbMines < _nbLignes* _nbColonnes
-    //  Vérifier positivité
-    //
-    //
+    /**
+     * Constructeur par défaut. Les attributs sont initialisés via des constantes.
+     */
+    public Grille()
+    {
+        this._nbLignes = Grille.DEF_NB_LIGNES;
+        this._nbColonnes = Grille.DEF_NB_COLONNES;
+        this._nbMines = Grille.DEF_NB_MINES;
+    }
+    /**
+     * Constructeur avec paramètres.
+     * @param nombre de lignes
+     * @param nombre de colonnes
+     * @param nombre de mines
+     */
     public Grille(int nbLignes, int nbColonnes, int nbMines)
     {
         try
@@ -67,7 +85,9 @@ public class Grille
             System.out.println(e.get_messageErreur());
         }
     }
-
+/**
+ * Méthode permettant de remplir la grille de cases en plaçant aléatoirement les n mines.
+ */
     private void initialiser()
     {
         Random r = new Random();
@@ -95,12 +115,18 @@ public class Grille
             }
         }
     }
-
+/**
+ * Méthode permettant de connaitre le nombre de cases de la grille
+ * @return nombre de cases de la grille (lignes * colonnes)
+ */
     public int length()
     {
         return (_nbLignes * _nbColonnes);
     }
-
+/**
+ * Méthode permettant l'affichage formaté dans un terminal.
+ * @return chaine de caractère formatée décrivant la grille.
+ */
     @Override
     public String toString()
     {
@@ -119,10 +145,10 @@ public class Grille
     public static void main(String[] args)
     {
         Grille g = new Grille(3, 3, 3);
-        System.out.println(g);
         Grille g2 = new Grille(0, 3, 3);
         Grille g3 = new Grille(3, 0, 3);
         Grille g4 = new Grille(3, 3, 10);
         Grille g5 = new Grille(3, 3, 0);
+        System.out.println(g);
     }
 }

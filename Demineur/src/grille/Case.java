@@ -1,8 +1,8 @@
 package grille;
 
 /**
- * 
- * @author Maxime GASTON
+ *
+ * @author Maxime GASTON, Alexis DEBERG
  */
 public class Case
 {
@@ -20,7 +20,10 @@ public class Case
      */
     private boolean _mine;
 
-
+    /**
+     * Constructeur d'une case.
+     * @param true si la case est minée, false sinon.
+     */
     public Case(boolean mine)
     {
         this._decouvert = false;
@@ -76,7 +79,10 @@ public class Case
     {
         return this._mine;
     }
-
+/**
+ * Méthode permettant d'afficher une case
+ * @return "CASE MINÉE" si _mine vaut true, "CASE  OK " sinon.
+ */
     @Override
     public String toString()
     {
