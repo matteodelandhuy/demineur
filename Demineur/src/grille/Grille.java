@@ -46,11 +46,17 @@ public class Grille
     {
         Random r = new Random();
         Vector<Integer> indexMines = new Vector<Integer>();
+        int nb;
         // tirage aléatoire de _nbMines chiffres qui seront les indexs des cases minées
         for (int i = 0; i < _nbMines; i++)
         {
-            /// A gérer : tirage sans remise.
-            indexMines.addElement(r.nextInt(this.length()));
+            do
+            {
+               // tirage sans remise
+               nb =  r.nextInt(this.length())+1;
+            }
+            while (indexMines.indexOf(nb) != -1);
+            indexMines.addElement(nb);
             System.out.println(indexMines.get(i));
         }
 
