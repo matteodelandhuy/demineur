@@ -6,20 +6,24 @@ import java.util.Vector;
 
 /**
  *
- * @author Maxime GASTON
+ * @author Maxime GASTON, Alexis DEBERG
+ * @see Case
  */
 public class Grille
 {
-/**
- * Constante utilisée par le constructeur par défaut pour le nombre de lignes
- */
+
+    /**
+     * Constante utilisée par le constructeur par défaut pour le nombre de lignes
+     */
     private static final int DEF_NB_LIGNES = 5;
-/**
- * Constante utilisée par le constructeur par défaut pour le nombre de colonnes
- */    private static final int DEF_NB_COLONNES = 5;
-/**
- * Constante utilisée par le constructeur par défaut pour le nombre de mines
- */    private static final int DEF_NB_MINES = 10;
+    /**
+     * Constante utilisée par le constructeur par défaut pour le nombre de colonnes
+     */
+    private static final int DEF_NB_COLONNES = 5;
+    /**
+     * Constante utilisée par le constructeur par défaut pour le nombre de mines
+     */
+    private static final int DEF_NB_MINES = 10;
     /**
      * Tableau de Case constituant le principal composant du jeu.
      */
@@ -46,6 +50,7 @@ public class Grille
         this._nbColonnes = Grille.DEF_NB_COLONNES;
         this._nbMines = Grille.DEF_NB_MINES;
     }
+
     /**
      * Constructeur avec paramètres.
      * @param nombre de lignes
@@ -85,9 +90,10 @@ public class Grille
             System.out.println(e.get_messageErreur());
         }
     }
-/**
- * Méthode permettant de remplir la grille de cases en plaçant aléatoirement les n mines.
- */
+
+    /**
+     * Méthode permettant de remplir la grille de cases en plaçant aléatoirement les n mines.
+     */
     private void initialiser()
     {
         Random r = new Random();
@@ -115,18 +121,20 @@ public class Grille
             }
         }
     }
-/**
- * Méthode permettant de connaitre le nombre de cases de la grille
- * @return nombre de cases de la grille (lignes * colonnes)
- */
+
+    /**
+     * Méthode permettant de connaitre le nombre de cases de la grille
+     * @return nombre de cases de la grille (lignes * colonnes)
+     */
     public int length()
     {
         return (_nbLignes * _nbColonnes);
     }
-/**
- * Méthode permettant l'affichage formaté dans un terminal.
- * @return chaine de caractère formatée décrivant la grille.
- */
+
+    /**
+     * Méthode permettant l'affichage formaté dans un terminal.
+     * @return chaine de caractère formatée décrivant la grille.
+     */
     @Override
     public String toString()
     {

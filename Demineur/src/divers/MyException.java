@@ -3,6 +3,7 @@ package divers;
 /**
  *
  * @author Maxime GASTON, Alexis DEBERG
+ * @see Throwable
  */
 public class MyException extends Throwable
 {

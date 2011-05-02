@@ -32,14 +32,13 @@ public class DemineurAboutBox extends javax.swing.JDialog {
         javax.swing.JLabel appVersionLabel = new javax.swing.JLabel();
         javax.swing.JLabel vendorLabel = new javax.swing.JLabel();
         javax.swing.JLabel appVendorLabel = new javax.swing.JLabel();
-        javax.swing.JLabel homepageLabel = new javax.swing.JLabel();
-        javax.swing.JLabel appHomepageLabel = new javax.swing.JLabel();
         javax.swing.JLabel appDescLabel = new javax.swing.JLabel();
         javax.swing.JLabel imageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(demineur.Demineur.class).getContext().getResourceMap(DemineurAboutBox.class);
         setTitle(resourceMap.getString("title")); // NOI18N
+        setBackground(resourceMap.getColor("aboutBox.background")); // NOI18N
         setModal(true);
         setName("aboutBox"); // NOI18N
         setResizable(false);
@@ -66,13 +65,6 @@ public class DemineurAboutBox extends javax.swing.JDialog {
         appVendorLabel.setText(resourceMap.getString("Application.vendor")); // NOI18N
         appVendorLabel.setName("appVendorLabel"); // NOI18N
 
-        homepageLabel.setFont(homepageLabel.getFont().deriveFont(homepageLabel.getFont().getStyle() | java.awt.Font.BOLD));
-        homepageLabel.setText(resourceMap.getString("homepageLabel.text")); // NOI18N
-        homepageLabel.setName("homepageLabel"); // NOI18N
-
-        appHomepageLabel.setText(resourceMap.getString("Application.homepage")); // NOI18N
-        appHomepageLabel.setName("appHomepageLabel"); // NOI18N
-
         appDescLabel.setText(resourceMap.getString("appDescLabel.text")); // NOI18N
         appDescLabel.setName("appDescLabel"); // NOI18N
 
@@ -90,21 +82,21 @@ public class DemineurAboutBox extends javax.swing.JDialog {
                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(versionLabel)
-                            .add(vendorLabel)
-                            .add(homepageLabel))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                            .add(vendorLabel))
+                        .add(27, 27, 27)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(appVersionLabel)
-                            .add(appVendorLabel)
-                            .add(appHomepageLabel)))
+                            .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                .add(closeButton)
+                                .add(appVendorLabel)))
+                        .add(15, 15, 15))
                     .add(org.jdesktop.layout.GroupLayout.LEADING, appTitleLabel)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, appDescLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
-                    .add(closeButton))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, appDescLabel, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(imageLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .add(imageLabel, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 206, Short.MAX_VALUE)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(appTitleLabel)
@@ -118,13 +110,9 @@ public class DemineurAboutBox extends javax.swing.JDialog {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(vendorLabel)
                     .add(appVendorLabel))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(homepageLabel)
-                    .add(appHomepageLabel))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 19, Short.MAX_VALUE)
+                .add(31, 31, 31)
                 .add(closeButton)
-                .addContainerGap())
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         pack();
