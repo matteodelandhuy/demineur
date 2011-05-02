@@ -77,4 +77,13 @@ public class Case
         return this._mine;
     }
 
+    @Override
+    public String toString()
+    {
+        if (this.get_mine() == true)
+            return "CASE MINÉE";
+        else
+            return "CASE   OK ";
+    }
+
 }

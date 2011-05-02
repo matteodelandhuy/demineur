@@ -3,13 +3,13 @@ package grille;
 import java.util.Random;
 import java.util.Vector;
 
-
 /**
  *
  * @author Maxime GASTON
  */
 public class Grille
 {
+
     /**
      * Tableau de Case constituant le principal composant du jeu.
      */
@@ -27,16 +27,6 @@ public class Grille
      */
     private int _nbMines;
 
-
-
-
-
-
-
-
-
-
-
     //
     //
     //  Vérifier que _nbMines < _nbLignes* _nbColonnes
@@ -49,6 +39,7 @@ public class Grille
         this._nbLignes = nbLignes;
         this._nbMines = nbMines;
         this._grille = new Vector(0, _nbLignes * _nbColonnes);
+        this.initialiser();
     }
 
     private void initialiser()
@@ -59,23 +50,44 @@ public class Grille
         for (int i = 0; i < _nbMines; i++)
         {
             /// A gérer : tirage sans remise.
-           indexMines.addElement(r.nextInt(_nbLignes * _nbColonnes)+1);
+            indexMines.addElement(r.nextInt(this.length()));
+            System.out.println(indexMines.get(i));
         }
 
         //initialisation
-        for (int i = 0; i < (_nbLignes * _nbColonnes); i++)
+        for (int i = 1; i <= this.length(); i++)
         {
-                if (indexMines.indexOf(i) != -1) // si l'indice est dans indiceMines
-                    _grille.addElement(new Case(true)); // ajout d'une case minée
-                else
-                    _grille.addElement(new Case(false)); // ajout d' une case autre.
+            if (indexMines.indexOf(i) != -1) // si l'indice est dans indiceMines
+            {
+                _grille.addElement(new Case(true)); // ajout d'une case minée
+            } else
+            {
+                _grille.addElement(new Case(false)); // ajout d' une case autre.
+            }
         }
     }
 
-
-    public static void main(int [][]args)
+    public int length()
     {
-        Grille g = new Grille(2, 2, 2);
+        return (_nbLignes * _nbColonnes);
+    }
 
+    @Override
+    public String toString()
+    {
+        String grille = "";
+        for (int i = 0; i < this.length();i++)
+        {
+            if (i % _nbColonnes == 0)
+                grille += "\n";
+            grille += ""+_grille.get(i)+"\t";
+        }
+        return grille;
+    }
+
+    public static void main(String [] args)
+    {
+        Grille g = new Grille(3, 3, 3);
+        System.out.println(g);
     }
 }
