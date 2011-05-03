@@ -13,17 +13,41 @@ public class Grille
 {
 
     /**
-     * Constante utilisée par le constructeur par défaut pour le nombre de lignes
+     * Constante : nombre de lignes d'une partie facile
      */
-    private static final int DEF_NB_LIGNES = 5;
+    public static final int DEF_NB_LIGNES_FACILE = 5;
     /**
-     * Constante utilisée par le constructeur par défaut pour le nombre de colonnes
+     * Constante : nombre de colonnes d'une partie facile
      */
-    private static final int DEF_NB_COLONNES = 5;
+    public static final int DEF_NB_COLONNES_FACILE = 5;
     /**
-     * Constante utilisée par le constructeur par défaut pour le nombre de mines
+     * Constante : nombre de mines d'une partie facile
      */
-    private static final int DEF_NB_MINES = 10;
+    public static final int DEF_NB_MINES_FACILE = 10;
+    /**
+     * Constante : nombre de lignes d'une partie moyenne
+     */
+    public static final int DEF_NB_LIGNES_MOYEN = 10;
+    /**
+     * Constante : nombre de colonnes d'une partie moyen
+     */
+    public static final int DEF_NB_COLONNES_MOYEN = 10;
+    /**
+     * Constante : nombre de mines d'une partie moyen
+     */
+    public static final int DEF_NB_MINES_MOYEN = 25;
+    /**
+     * Constante : nombre de lignes d'une partie difficile
+     */
+    public static final int DEF_NB_LIGNES_DIFFICILE = 20;
+    /**
+     * Constante : nombre de colonnes d'une partie difficile
+     */
+    public static final int DEF_NB_COLONNES_DIFFICILE = 20;
+    /**
+     * Constante : nombre de mines d'une partie facile
+     */
+    public static final int DEF_NB_MINES_DIFFICILE = 150;
     /**
      * Tableau de Case constituant le principal composant du jeu.
      */
@@ -40,16 +64,6 @@ public class Grille
      * Nombre de mines de la grille.
      */
     private int _nbMines;
-
-    /**
-     * Constructeur par défaut. Les attributs sont initialisés via des constantes.
-     */
-    public Grille()
-    {
-        this._nbLignes = Grille.DEF_NB_LIGNES;
-        this._nbColonnes = Grille.DEF_NB_COLONNES;
-        this._nbMines = Grille.DEF_NB_MINES;
-    }
 
     /**
      * Constructeur avec paramètres.
@@ -84,7 +98,6 @@ public class Grille
             }
             this._nbMines = nbMines;
             this._grille = new Vector(0, _nbLignes * _nbColonnes);
-            this.initialiser();
         } catch (MyException e)
         {
             System.out.println(e.get_messageErreur());
@@ -94,7 +107,7 @@ public class Grille
     /**
      * Méthode permettant de remplir la grille de cases en plaçant aléatoirement les n mines.
      */
-    private void initialiser()
+    public void initialiser()
     {
         Random r = new Random();
         Vector<Integer> indexMines = new Vector<Integer>();

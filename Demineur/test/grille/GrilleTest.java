@@ -40,13 +40,26 @@ public class GrilleTest {
     }
 
     /**
+     * Test of initialiser method, of class Grille.
+     */
+    @Test
+    public void testInitialiser()
+    {
+        System.out.println("initialiser");
+        Grille instance = null;
+        instance.initialiser();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
      * Test of length method, of class Grille.
      */
     @Test
     public void testLength()
     {
         System.out.println("length");
-        Grille instance = new Grille();
+        Grille instance = null;
         int expResult = 0;
         int result = instance.length();
         assertEquals(expResult, result);
@@ -61,7 +74,7 @@ public class GrilleTest {
     public void testToString()
     {
         System.out.println("toString");
-        Grille instance = new Grille();
+        Grille instance = null;
         String expResult = "";
         String result = instance.toString();
         assertEquals(expResult, result);
