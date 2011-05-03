@@ -53,25 +53,25 @@
                 <Property name="name" type="java.lang.String" value="jSeparator1" noResource="true"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JRadioButtonMenuItem" name="jRadioButtonMenuItem1">
+            <MenuItem class="javax.swing.JRadioButtonMenuItem" name="modeFacile">
               <Properties>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" resourceKey="jRadioButtonMenuItem1.text"/>
-                <Property name="name" type="java.lang.String" value="jRadioButtonMenuItem1" noResource="true"/>
+                <Property name="text" type="java.lang.String" resourceKey="modeFacile.text"/>
+                <Property name="name" type="java.lang.String" value="modeFacile" noResource="true"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JRadioButtonMenuItem" name="jRadioButtonMenuItem2">
+            <MenuItem class="javax.swing.JRadioButtonMenuItem" name="modeMoyen">
               <Properties>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" resourceKey="jRadioButtonMenuItem2.text"/>
-                <Property name="name" type="java.lang.String" value="jRadioButtonMenuItem2" noResource="true"/>
+                <Property name="text" type="java.lang.String" resourceKey="modeMoyen.text"/>
+                <Property name="name" type="java.lang.String" value="modeMoyen" noResource="true"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JRadioButtonMenuItem" name="jRadioButtonMenuItem3">
+            <MenuItem class="javax.swing.JRadioButtonMenuItem" name="modeDifficile">
               <Properties>
                 <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" resourceKey="jRadioButtonMenuItem3.text"/>
-                <Property name="name" type="java.lang.String" value="jRadioButtonMenuItem3" noResource="true"/>
+                <Property name="text" type="java.lang.String" resourceKey="modeDifficile.text"/>
+                <Property name="name" type="java.lang.String" value="modeDifficile" noResource="true"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="personaliser">

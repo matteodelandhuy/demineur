@@ -105,9 +105,9 @@ public class DemineurView extends FrameView {
         javax.swing.JMenu fileMenu = new javax.swing.JMenu();
         nouvellePartie = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
-        jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
-        jRadioButtonMenuItem3 = new javax.swing.JRadioButtonMenuItem();
+        modeFacile = new javax.swing.JRadioButtonMenuItem();
+        modeMoyen = new javax.swing.JRadioButtonMenuItem();
+        modeDifficile = new javax.swing.JRadioButtonMenuItem();
         personaliser = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         javax.swing.JMenuItem exitMenuItem = new javax.swing.JMenuItem();
@@ -146,20 +146,20 @@ public class DemineurView extends FrameView {
         jSeparator1.setName("jSeparator1"); // NOI18N
         fileMenu.add(jSeparator1);
 
-        jRadioButtonMenuItem1.setSelected(true);
-        jRadioButtonMenuItem1.setText(resourceMap.getString("jRadioButtonMenuItem1.text")); // NOI18N
-        jRadioButtonMenuItem1.setName("jRadioButtonMenuItem1"); // NOI18N
-        fileMenu.add(jRadioButtonMenuItem1);
+        modeFacile.setSelected(true);
+        modeFacile.setText(resourceMap.getString("modeFacile.text")); // NOI18N
+        modeFacile.setName("modeFacile"); // NOI18N
+        fileMenu.add(modeFacile);
 
-        jRadioButtonMenuItem2.setSelected(true);
-        jRadioButtonMenuItem2.setText(resourceMap.getString("jRadioButtonMenuItem2.text")); // NOI18N
-        jRadioButtonMenuItem2.setName("jRadioButtonMenuItem2"); // NOI18N
-        fileMenu.add(jRadioButtonMenuItem2);
+        modeMoyen.setSelected(true);
+        modeMoyen.setText(resourceMap.getString("modeMoyen.text")); // NOI18N
+        modeMoyen.setName("modeMoyen"); // NOI18N
+        fileMenu.add(modeMoyen);
 
-        jRadioButtonMenuItem3.setSelected(true);
-        jRadioButtonMenuItem3.setText(resourceMap.getString("jRadioButtonMenuItem3.text")); // NOI18N
-        jRadioButtonMenuItem3.setName("jRadioButtonMenuItem3"); // NOI18N
-        fileMenu.add(jRadioButtonMenuItem3);
+        modeDifficile.setSelected(true);
+        modeDifficile.setText(resourceMap.getString("modeDifficile.text")); // NOI18N
+        modeDifficile.setName("modeDifficile"); // NOI18N
+        fileMenu.add(modeDifficile);
 
         personaliser.setText(resourceMap.getString("personaliser.text")); // NOI18N
         personaliser.setName("personaliser"); // NOI18N
@@ -230,13 +230,13 @@ public class DemineurView extends FrameView {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
-    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem3;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JRadioButtonMenuItem modeDifficile;
+    private javax.swing.JRadioButtonMenuItem modeFacile;
+    private javax.swing.JRadioButtonMenuItem modeMoyen;
     private javax.swing.JMenuItem nouvellePartie;
     private javax.swing.JMenuItem personaliser;
     private javax.swing.JProgressBar progressBar;
