@@ -64,11 +64,11 @@ public class Case
      * Méthode permettant de mettre ou d'enlever un drapeau sur une case non découverte.
      * @param _drapeau
      */
-    public void setDrapeau()
+    public void set_drapeau(boolean choix)
     {
         if (this.get_decouvert() == false)
         {
-            this._drapeau = !this._drapeau;
+            this._drapeau = choix;
         }
     }
     /**

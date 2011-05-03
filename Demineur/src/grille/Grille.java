@@ -64,6 +64,11 @@ public class Grille
      * Nombre de mines de la grille.
      */
     private int _nbMines;
+    /**
+     * Nombre de drapeaux posés sur la grille.
+     */
+    private int _nbDrapeaux = 0;
+
 
     /**
      * Constructeur avec paramètres.
@@ -97,7 +102,7 @@ public class Grille
                 throw new MyException("Erreur : plus de mines que de cases.");
             }
             this._nbMines = nbMines;
-            this._grille = new Vector(0, _nbLignes * _nbColonnes);
+            this._grille = new Vector(0, this._nbLignes * this._nbColonnes);
         } catch (MyException e)
         {
             System.out.println(e.get_messageErreur());
@@ -113,7 +118,7 @@ public class Grille
         Vector<Integer> indexMines = new Vector<Integer>();
         int nb;
         // tirage aléatoire sans remise de _nbMines chiffres qui seront les indexs des cases minées
-        for (int i = 0; i < _nbMines; i++)
+        for (int i = 0; i < this._nbMines; i++)
         {
             do
             {
@@ -127,10 +132,10 @@ public class Grille
         {
             if (indexMines.indexOf(i) != -1) // si l'indice est dans indiceMines
             {
-                _grille.addElement(new Case(true)); // ajout d'une case minée
+                this._grille.addElement(new Case(true)); // ajout d'une case minée
             } else
             {
-                _grille.addElement(new Case(false)); // ajout d' une case autre.
+               this._grille.addElement(new Case(false)); // ajout d' une case autre.
             }
         }
     }
@@ -141,8 +146,25 @@ public class Grille
      */
     public int length()
     {
-        return (_nbLignes * _nbColonnes);
+        return (this._nbLignes * this._nbColonnes);
     }
+    /**
+     * Méthode de connaitre le nombre de drapeaux posées sur la grille.
+     * @return
+     */
+    public int get_nbDrapeaux()
+    {return this._nbDrapeaux;}
+
+    public void addDrapeau(int index)
+    {
+        if (this._grille.elementAt(index).get_drapeau() == true)
+        {
+            this._grille.elementAt(index).set_drapeau(false);
+        this._nbDrapeaux--;}
+        else
+        {   this._grille.elementAt(index).set_drapeau(true);
+        this._nbDrapeaux++;
+    }}
 
     /**
      * Méthode permettant l'affichage formaté dans un terminal.
@@ -154,11 +176,11 @@ public class Grille
         String grille = "";
         for (int i = 0; i < this.length(); i++)
         {
-            if (i % _nbColonnes == 0)
+            if (i % this._nbColonnes == 0)
             {
                 grille += "\n";
             }
-            grille += "" + _grille.get(i) + "\t";
+            grille += "" + this._grille.get(i) + "\t";
         }
         return grille;
     }
