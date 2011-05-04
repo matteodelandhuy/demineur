@@ -1,3 +1,10 @@
+# Diver #
+#########
+*.xml
+*.mf
+build
+nbproject
+
 # Compiled source #
 ###################
 *.com
