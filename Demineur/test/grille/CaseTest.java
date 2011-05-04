@@ -83,15 +83,14 @@ public class CaseTest {
     }
 
     /**
-     * Test of set_drapeau method, of class Case.
+     * Test of setDrapeau method, of class Case.
      */
     @Test
-    public void testSet_drapeau()
+    public void testSetDrapeau()
     {
-        System.out.println("set_drapeau");
-        boolean choix = false;
+        System.out.println("setDrapeau");
         Case instance = null;
-        instance.set_drapeau(choix);
+        instance.setDrapeau();
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

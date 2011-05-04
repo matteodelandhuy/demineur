@@ -69,6 +69,7 @@ public class Grille
      */
     private int _nbDrapeaux = 0;
 
+
     /**
      * Constructeur avec paramètres.
      * @param nombre de lignes
@@ -104,10 +105,7 @@ public class Grille
             this._grille = new Vector(0, this._nbLignes * this._nbColonnes);
         } catch (MyException e)
         {
-            e.show_erreur("Création d'une grille normale.");
-            this._nbLignes = Grille.DEF_NB_LIGNES_FACILE;
-            this._nbColonnes = Grille.DEF_NB_COLONNES_FACILE;
-            this._nbMines = Grille.DEF_NB_MINES_FACILE;
+            System.out.println(e.get_messageErreur());
         }
     }
 
@@ -137,7 +135,7 @@ public class Grille
                 this._grille.addElement(new Case(true)); // ajout d'une case minée
             } else
             {
-                this._grille.addElement(new Case(false)); // ajout d' une case autre.
+               this._grille.addElement(new Case(false)); // ajout d' une case autre.
             }
         }
     }
@@ -150,28 +148,23 @@ public class Grille
     {
         return (this._nbLignes * this._nbColonnes);
     }
-
     /**
      * Méthode de connaitre le nombre de drapeaux posées sur la grille.
      * @return
      */
     public int get_nbDrapeaux()
-    {
-        return this._nbDrapeaux;
-    }
+    {return this._nbDrapeaux;}
 
     public void addDrapeau(int index)
     {
         if (this._grille.elementAt(index).get_drapeau() == true)
         {
             this._grille.elementAt(index).set_drapeau(false);
-            this._nbDrapeaux--;
-        } else
-        {
-            this._grille.elementAt(index).set_drapeau(true);
-            this._nbDrapeaux++;
-        }
-    }
+        this._nbDrapeaux--;}
+        else
+        {   this._grille.elementAt(index).set_drapeau(true);
+        this._nbDrapeaux++;
+    }}
 
     /**
      * Méthode permettant l'affichage formaté dans un terminal.
@@ -195,7 +188,6 @@ public class Grille
     public static void main(String[] args)
     {
         Grille g = new Grille(3, 3, 3);
-        g.initialiser();
         Grille g2 = new Grille(0, 3, 3);
         Grille g3 = new Grille(3, 0, 3);
         Grille g4 = new Grille(3, 3, 10);
