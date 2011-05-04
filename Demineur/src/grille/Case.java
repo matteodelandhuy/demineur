@@ -19,6 +19,10 @@ public class Case
      * Booléen permettant de savoir si la case est minée.
      */
     private boolean _mine;
+    /**
+     * Nombre de mines à proximité de this.
+     */
+    private int _nbMinesProximite;
 
     /**
      * Constructeur d'une case.
@@ -78,6 +82,22 @@ public class Case
     public boolean get_mine()
     {
         return this._mine;
+    }
+/**
+     * Getter pour l'attribut _nbMinesProximite.
+     * @return le nombre de mines à proximité de this.
+     */
+    public int get_nbMinesProximite()
+    {
+        return this._nbMinesProximite;
+    }
+/**
+ * Setter pour l'attribut _nbMinesProximite.
+ * @param nombre de mines à proximité de this.
+ */
+    public void set_nbMinesProximite(int _nbMinesProximite)
+    {
+        this._nbMinesProximite = _nbMinesProximite;
     }
 
 /**

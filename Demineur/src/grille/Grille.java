@@ -50,7 +50,7 @@ public class Grille
      */
     public static final int DEF_NB_MINES_DIFFICILE = 150;
     /**
-     * Tableau de Case constituant le principal composant du jeu.
+     * Tableau 2D de Case constituant le principal composant du jeu.
      */
     private Case[][] _grille;
     /**
@@ -127,7 +127,7 @@ public class Grille
             Point pt;
             do
             {
-                pt = new Point(r.nextInt(this._nbLignes) , r.nextInt(this._nbColonnes) );
+                pt = new Point(r.nextInt(this._nbLignes), r.nextInt(this._nbColonnes));
             } while (indexMines.indexOf(pt) != -1);
             indexMines.addElement(pt);
             //System.out.println(indexMines.get(i));
@@ -136,14 +136,77 @@ public class Grille
         for (int i = 0; i < this._nbLignes; i++)
         {
             for (int j = 0; j < this._nbColonnes; j++)
-            if (indexMines.indexOf(new Point(i, j)) != -1) // si l'indice est dans indiceMines
             {
-                this._grille[i][j] = new Case(true); // ajout d'une case minée
-            } else
-            {
-                this._grille[i][j] = new Case(false); // ajout d' une case autre.
+                if (indexMines.indexOf(new Point(i, j)) != -1) // si l'indice est dans indiceMines
+                {
+                    this._grille[i][j] = new Case(true); // ajout d'une case minée
+                } else
+                {
+                    this._grille[i][j] = new Case(false); // ajout d' une case autre.
+                }
             }
         }
+    }
+
+    /**
+     * Méthode permettant d'afficher dans la vue, l'indice montrant le nombre de mines à proximité de chaque case.
+     */
+    public void afficherCase()
+    {
+        for (int i = 0; i < this._nbLignes; i++)
+        {
+            for (int j = 0; j < this._nbColonnes; j++)
+            {
+                this._grille[i][j].set_nbMinesProximite(nbMinesCase(i, j));
+            }
+        }
+    }
+    /**
+     * Méthode retournant le nombre de mines à proximité de la case dont les coordonnées sont passées en paramètre.
+     * @param indice de la ligne de la case
+     * @param indice de la colonne de la case
+     * @return nombre de mines à proximité
+     */
+    private int nbMinesCase(int x, int y)
+    {
+        if (x == 0)//première ligne
+        {
+            if (y == 0) //coin haut-gauche
+                return 1;
+            else if (y == this._nbColonnes)//coin haut-droit
+                return 1;
+            else//coté supérieur
+                return 1;
+        }
+        else if (x == this._nbLignes)//dernière ligne
+        {
+            if (y == 0)//coin bas-gauche
+                return 1;
+            else if (y == this._nbColonnes)//coin bas-droit
+                return 1;
+            else
+                return 1;//coté inférieur
+        }
+        else if (y == 0)//première colonne
+        {
+        if (x == 0) //coin haut-gauche
+                return 1;
+            else if (x == this._nbLignes)//coin bas-gauche
+                return 1;
+            else//coté gauche
+                return 1;
+        }
+        else if (y == this._nbColonnes)//dernière colonne
+        {
+        if (x == 0)//coin haut-droit
+                return 1;
+            else if (x == this._nbLignes)//coin bas-droit
+                return 1;
+            else
+                return 1;//coté droit
+        }
+        else//intérieur de la grille
+            return 0;
     }
 
     /**
@@ -188,10 +251,12 @@ public class Grille
         for (int i = 0; i < this._nbLignes; i++)
         {
             for (int j = 0; j < this._nbColonnes; j++)
+            {
                 grille += "" + this._grille[i][j] + "\t";
+            }
             grille += "\n";
         }
-        
+
         return grille;
     }
 
@@ -199,12 +264,12 @@ public class Grille
     {
         Grille g = new Grille(3, 3, 3);
         g.initialiser();
+        System.out.println(g);
 
         // test des exceptions.
 //        Grille g2 = new Grille(0, 3, 3);
 //        Grille g3 = new Grille(3, 0, 3);
 //        Grille g4 = new Grille(3, 3, 10);
 //        Grille g5 = new Grille(3, 3, 0);
-        System.out.println(g);
     }
 }
