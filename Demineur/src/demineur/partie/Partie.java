@@ -5,9 +5,11 @@ import grille.Grille;
 /**
  *
  * @author Maxime GASTON, Alexis DEBERG
+ * @see Grille
  */
 public class Partie
 {
+
     /**
      * Le temps écoulé lors de la partie en cours.
      */
@@ -20,12 +22,12 @@ public class Partie
      * La grille choisie pour la partie en cours.
      */
     private Grille _grille;
+
     /**
      * Constructeur par défaut : il prend les valeurs par défaut et ne prends pas de grille.
      */
     public Partie()
     {
-
     }
 
     /**
@@ -36,7 +38,7 @@ public class Partie
     {
         this._grille = grille;
         this._gagnee = false;
-        this._temps  = 0;
+        this._temps = 0;
     }
 
     /**
@@ -47,26 +49,29 @@ public class Partie
     public boolean partieGagnee()
     {
         if (_gagnee == true)
-         return true;
-        else
+        {
+            return true;
+        } else
+        {
             return false;
+        }
     }
 
-/**
- * Méthode permettant de définir une grille pour cette partie.
- * @param grille de la partie.
- */
+    /**
+     * Méthode permettant de définir une grille pour cette partie.
+     * @param grille de la partie.
+     */
     public void set_grille(Grille g)
     {
         this._grille = g;
     }
-/**
- * Méthode permettant d'incrémenter le temps de la partie.
- * Méthode à éxecuter toute les secondes.
- */
+
+    /**
+     * Méthode permettant d'incrémenter le temps de la partie.
+     * Méthode à éxecuter toute les secondes.
+     */
     public void incrementerTemps()
     {
         this._temps++;
     }
-
 }
