@@ -53,7 +53,7 @@ public class GrilleTest {
     }
 
     /**
-     * Test of length method, of class Grille.
+     * Test of nbCases method, of class Grille.
      */
     @Test
     public void testLength()
@@ -61,7 +61,7 @@ public class GrilleTest {
         System.out.println("length");
         Grille instance = null;
         int expResult = 0;
-        int result = instance.length();
+        int result = instance.nbCases();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

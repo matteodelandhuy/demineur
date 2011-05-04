@@ -79,6 +79,7 @@ public class Case
     {
         return this._mine;
     }
+
 /**
  * Méthode permettant d'afficher une case
  * @return "CASE MINÉE" si _mine vaut true, "CASE  OK " sinon.

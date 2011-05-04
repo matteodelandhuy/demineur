@@ -1,6 +1,7 @@
 package grille;
 
 import divers.MyException;
+import java.awt.Point;
 import java.util.Random;
 import java.util.Vector;
 
@@ -51,7 +52,7 @@ public class Grille
     /**
      * Tableau de Case constituant le principal composant du jeu.
      */
-    private Vector<Case> _grille;
+    private Case[][] _grille;
     /**
      * Nombre de lignes de la grille.
      */
@@ -101,13 +102,14 @@ public class Grille
                 throw new MyException("Erreur : plus de mines que de cases.");
             }
             this._nbMines = nbMines;
-            this._grille = new Vector(0, this._nbLignes * this._nbColonnes);
+            this._grille = new Case[_nbLignes][_nbColonnes];
         } catch (MyException e)
         {
             e.show_erreur("Création d'une grille normale.");
             this._nbLignes = Grille.DEF_NB_LIGNES_FACILE;
             this._nbColonnes = Grille.DEF_NB_COLONNES_FACILE;
             this._nbMines = Grille.DEF_NB_MINES_FACILE;
+            this._grille = new Case[_nbColonnes][_nbLignes];
         }
     }
 
@@ -117,27 +119,29 @@ public class Grille
     public void initialiser()
     {
         Random r = new Random();
-        Vector<Integer> indexMines = new Vector<Integer>();
-        int nb;
-        // tirage aléatoire sans remise de _nbMines chiffres qui seront les indexs des cases minées
+        Vector<Point> indexMines = new Vector<Point>();
+        int x, y;
+        // tirage aléatoire sans remise de _nbMines chiffres qui seront les index des cases minées
         for (int i = 0; i < this._nbMines; i++)
         {
+            Point pt;
             do
             {
-                nb = r.nextInt(this.length()) + 1;
-            } while (indexMines.indexOf(nb) != -1);
-            indexMines.addElement(nb);
+                pt = new Point(r.nextInt(this._nbLignes) , r.nextInt(this._nbColonnes) );
+            } while (indexMines.indexOf(pt) != -1);
+            indexMines.addElement(pt);
             //System.out.println(indexMines.get(i));
         }
         //initialisation des cases
-        for (int i = 1; i <= this.length(); i++)
+        for (int i = 0; i < this._nbLignes; i++)
         {
-            if (indexMines.indexOf(i) != -1) // si l'indice est dans indiceMines
+            for (int j = 0; j < this._nbColonnes; j++)
+            if (indexMines.indexOf(new Point(i, j)) != -1) // si l'indice est dans indiceMines
             {
-                this._grille.addElement(new Case(true)); // ajout d'une case minée
+                this._grille[i][j] = new Case(true); // ajout d'une case minée
             } else
             {
-                this._grille.addElement(new Case(false)); // ajout d' une case autre.
+                this._grille[i][j] = new Case(false); // ajout d' une case autre.
             }
         }
     }
@@ -146,7 +150,7 @@ public class Grille
      * Méthode permettant de connaitre le nombre de cases de la grille
      * @return nombre de cases de la grille (lignes * colonnes)
      */
-    public int length()
+    public int nbCases()
     {
         return (this._nbLignes * this._nbColonnes);
     }
@@ -160,15 +164,15 @@ public class Grille
         return this._nbDrapeaux;
     }
 
-    public void addDrapeau(int index)
+    public void addDrapeau(int x, int y)
     {
-        if (this._grille.elementAt(index).get_drapeau() == true)
+        if (this._grille[x][y].get_drapeau() == true)
         {
-            this._grille.elementAt(index).set_drapeau(false);
+            this._grille[x][y].set_drapeau(false);
             this._nbDrapeaux--;
         } else
         {
-            this._grille.elementAt(index).set_drapeau(true);
+            this._grille[x][y].set_drapeau(true);
             this._nbDrapeaux++;
         }
     }
@@ -181,14 +185,13 @@ public class Grille
     public String toString()
     {
         String grille = "";
-        for (int i = 0; i < this.length(); i++)
+        for (int i = 0; i < this._nbLignes; i++)
         {
-            if (i % this._nbColonnes == 0)
-            {
-                grille += "\n";
-            }
-            grille += "" + this._grille.get(i) + "\t";
+            for (int j = 0; j < this._nbColonnes; j++)
+                grille += "" + this._grille[i][j] + "\t";
+            grille += "\n";
         }
+        
         return grille;
     }
 
@@ -196,10 +199,12 @@ public class Grille
     {
         Grille g = new Grille(3, 3, 3);
         g.initialiser();
-        Grille g2 = new Grille(0, 3, 3);
-        Grille g3 = new Grille(3, 0, 3);
-        Grille g4 = new Grille(3, 3, 10);
-        Grille g5 = new Grille(3, 3, 0);
+
+        // test des exceptions.
+//        Grille g2 = new Grille(0, 3, 3);
+//        Grille g3 = new Grille(3, 0, 3);
+//        Grille g4 = new Grille(3, 3, 10);
+//        Grille g5 = new Grille(3, 3, 0);
         System.out.println(g);
     }
 }

@@ -42,11 +42,11 @@ public class MyException extends Throwable
         JOptionPane.showMessageDialog(new JFrame(), this._messageErreur, "Erreur!",JOptionPane.ERROR_MESSAGE);
     }
     /**
-     * Affichage d'une boite de dialogue décrivante l'erreur.
+     * Affichage d'une boite de dialogue décrivant l'erreur.
      * @param message complémentaire pour des action effectuées en conséquence de l'erreur.
      */
-    public void show_erreur(String message_complémentaire)
+    public void show_erreur(String message_complementaire)
     {
-        JOptionPane.showMessageDialog(new JFrame(), this._messageErreur+"\n"+message_complémentaire, "Erreur!",  JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(new JFrame(), this._messageErreur+"\n"+message_complementaire, "Erreur!",  JOptionPane.ERROR_MESSAGE);
     }
 }
