@@ -1,4 +1,4 @@
-package demineur.partie;
+package partie;
 
 import grille.Grille;
 
