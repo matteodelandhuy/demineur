@@ -1,11 +1,13 @@
 package demineur.menu;
 
 import divers.MyException;
+import grille.PersonaliserGrilleVue;
 import grille.Grille;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JSeparator;
 import partie.Partie;
 
 /**
@@ -18,14 +20,48 @@ import partie.Partie;
  */
 public class DemineurMenu extends JMenuBar implements interfaceDemineurMenu
 {
-    public static final int  NIVEAU_FACILE = 1;
-    public static final int  NIVEAU_MOYEN = 2;
-    public static final int  NIVEAU_DIFFICILE = 3;
 
+    /**
+     * Constante : nombre correspondant au niveau facile
+     */
+    public static final int NIVEAU_FACILE = 1;
+    /**
+     * Constante : nombre correspondant au niveau moyen
+     */
+    public static final int NIVEAU_MOYEN = 2;
+    /**
+     * Constante : nombre correspondant au niveau difficile
+     */
+    public static final int NIVEAU_DIFFICILE = 3;
+    private static final String NOUVELLE_PARTIE = "Nouvelle partie";
+    private static final String FACILE = "Facile";
+    private static final String MOYEN = "Moyen";
+    private static final String DIFFICILE = "Difficile";
+    private static final String PERSONALISER = "Personaliser";
+    private static final String QUITTER = "Quitter";
+    /**
+     * Element "Nouvelle Partie" du menu "Partie".
+     */
     private JMenuItem _nouvellePartie;
+    /**
+     * RadioButton correspondant au choix du niveau facile.
+     */
     private JRadioButtonMenuItem _partieFacile;
+    /**
+     * RadioButton correspondant au choix du niveau moyen.
+     */
     private JRadioButtonMenuItem _partieMoyen;
+    /**
+     * RadioButton correspondant au choix du niveau difficile.
+     */
     private JRadioButtonMenuItem _partieDifficile;
+    /**
+     * Element "Personaliser" du menu "Partie".
+     */
+    private JMenuItem _personaliser;
+    /**
+     * Element "Quitter" du menu "Partie".
+     */
     private JMenuItem _quitter;
 
     /**
@@ -41,6 +77,23 @@ public class DemineurMenu extends JMenuBar implements interfaceDemineurMenu
         this.add(menuAide);
 
         //Ajout des items du menu "Partie"
+        this._nouvellePartie = new JMenuItem(DemineurMenu.NOUVELLE_PARTIE);
+        menuPartie.add(this._nouvellePartie);
+        menuPartie.add(new JSeparator());
+        this._partieFacile = new JRadioButtonMenuItem(DemineurMenu.FACILE);
+        this._partieFacile.setSelected(false);
+        menuPartie.add(this._partieFacile);
+        this._partieMoyen = new JRadioButtonMenuItem(DemineurMenu.MOYEN);
+        this._partieMoyen.setSelected(false);
+        menuPartie.add(this._partieMoyen);
+        this._partieDifficile = new JRadioButtonMenuItem(DemineurMenu.DIFFICILE);
+        menuPartie.add(this._partieDifficile);
+        this._partieDifficile.setSelected(false);
+        this._personaliser = new JMenuItem(DemineurMenu.PERSONALISER);
+        menuPartie.add(this._personaliser);
+        menuPartie.add(new JSeparator());
+        this._quitter = new JMenuItem(DemineurMenu.QUITTER);
+        menuPartie.add(this._quitter);
 
         //Ajout des items du menu "?"
 
@@ -79,11 +132,10 @@ public class DemineurMenu extends JMenuBar implements interfaceDemineurMenu
 
     /**
      * Méthode permettant d'appeler la fenêtre de choix des dimensions de la Grille (pour un partie personalisée).
-     * @return  grille correspondant au niveau choisi.
      */
-    public Grille choisirDimensions()
+    public void choisirDimensions()
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        PersonaliserGrilleVue choixGrille = new PersonaliserGrilleVue();
     }
 
     /**

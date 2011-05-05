@@ -10,6 +10,6 @@ public interface InterfaceChoixGrille
 {
     public void verificationTaille() throws MyException;
     public void verificationNbMines() throws MyException;
-    public void valider();
+    public Grille valider();
     public void annuler();
 }

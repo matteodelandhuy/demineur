@@ -24,9 +24,8 @@ public interface interfaceDemineurMenu
     public Grille choixNiveau(int niveau) throws MyException;
     /**
      * Méthode permettant d'appeler la fenêtre de choix des dimensions de la Grille (pour un partie personalisée).
-     * @return  grille correspondant au niveau choisi.
      */
-    public Grille choisirDimensions();
+    public void choisirDimensions();
     /**
      * Méthode permettant de quitter l'application.
      */
