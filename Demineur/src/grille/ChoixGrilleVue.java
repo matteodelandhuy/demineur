@@ -2,7 +2,6 @@ package grille;
 
 import divers.MyException;
 import divers.MyFrame;
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,33 +15,47 @@ import javax.swing.JTextField;
  */
 public class ChoixGrilleVue extends MyFrame implements InterfaceChoixGrille
 {
-    private static final String NOM_FENETRE = "Personaliser la grille";
+
+    private static final String NOM_FENETRE = "Personnaliser la grille";
+    private static final String LBL_LIGNES = "Nombre de lignes : ";
+    private static final String LBL_COLONNES = "Nombre de colonnes : ";
+    private static final String LBL_MINES = "Nombre de mines : ";
+    private JTextField _nbLignes;
+    private JTextField _nbColonnes;
+    private JTextField _nbMines;
+    private JButton _btnOk;
+    private JButton _btnAnnuler;
+
     public ChoixGrilleVue()
     {
         super(ChoixGrilleVue.NOM_FENETRE);
 
-        JPanel panel = new JPanel(); this.add(panel);
-        panel.setLayout(new BorderLayout());
+        JPanel panel = new JPanel();
+        this.add(panel);
+        panel.setLayout(new GridLayout(4,2));
 
         // Zone de saisie
-        JPanel panelSaisie = new JPanel();
-        GridLayout gridSaisie = new GridLayout(3, 2);
-        panelSaisie.setLayout(gridSaisie);
-        JLabel lblLignes = new JLabel(); panelSaisie.add(lblLignes);
-        JTextField nbLignes = new JTextField();panelSaisie.add(nbLignes);
-        JLabel lblColonnes = new JLabel();panelSaisie.add(lblColonnes);
-        JTextField nbColonnes = new JTextField();panelSaisie.add(nbColonnes);
-        JLabel lblMines = new JLabel();panelSaisie.add(lblMines);
-        JTextField nbMines = new JTextField();panelSaisie.add(nbMines);
-        panel.add(panelSaisie);
+        JLabel lblLignes = new JLabel(ChoixGrilleVue.LBL_LIGNES);
+        panel.add(lblLignes);
+        this._nbLignes = new JTextField(3);
+        panel.add(this._nbLignes);
+
+        JLabel lblColonnes = new JLabel(ChoixGrilleVue.LBL_COLONNES);
+        panel.add(lblColonnes);
+        this._nbColonnes = new JTextField(3);
+        panel.add(this._nbColonnes);
+
+        JLabel lblMines = new JLabel(ChoixGrilleVue.LBL_MINES);
+        panel.add(lblMines);
+        this._nbMines = new JTextField(3);
+        panel.add(this._nbMines);
+        
 
         // Zone des boutons
-        JPanel panelBtns = new JPanel();
-        GridLayout gridBtns = new GridLayout(1, 2);
-        panelSaisie.setLayout(gridBtns);
-        JButton btnOk = new JButton("Ok"); panelBtns.add(btnOk);
-        JButton btnAnnuler = new JButton("Annuler"); panelBtns.add(btnAnnuler);
-        panel.add(panelBtns, BorderLayout.PAGE_END);
+        this._btnOk = new JButton("Ok");
+        panel.add(this._btnOk);
+        this._btnAnnuler = new JButton("Annuler");
+        panel.add(this._btnAnnuler);
 
         this.setProprietes();
     }
@@ -71,5 +84,10 @@ public class ChoixGrilleVue extends MyFrame implements InterfaceChoixGrille
     public void annuler()
     {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public static void main(String[] args)
+    {
+        ChoixGrilleVue g = new ChoixGrilleVue();
     }
 }
