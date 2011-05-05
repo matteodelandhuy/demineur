@@ -262,7 +262,7 @@ public class Grille
 
     public static void main(String[] args)
     {
-        Grille g = new Grille(3, 3, 3);
+        Grille g = new Grille(5, 5, 5);
         g.initialiser();
         System.out.println(g);
 

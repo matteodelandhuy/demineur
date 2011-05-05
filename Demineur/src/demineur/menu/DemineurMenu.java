@@ -91,6 +91,6 @@ public class DemineurMenu extends JMenuBar implements interfaceDemineurMenu
      */
     public void quitter()
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        System.exit(0);
     }
 }

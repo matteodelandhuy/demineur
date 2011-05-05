@@ -14,8 +14,11 @@ import javax.swing.JPanel;
  */
 public class DemineurVue extends MyFrame
 {
+        private static final String NOM_FENETRE = "Démineur";
+
     public DemineurVue()
     {
+        super(DemineurVue.NOM_FENETRE);
         JPanel panel = new JPanel(); this.add(panel);
         BorderLayout border = new BorderLayout(); this.setLayout(border);
         DemineurMenu menu = new DemineurMenu(); this.add(menu, BorderLayout.PAGE_START);

@@ -8,10 +8,9 @@ import javax.swing.JFrame;
  */
 public abstract class MyFrame extends JFrame
 {
-    
-    public MyFrame()
+    public MyFrame(String nom)
     {
-        super();
+        super(nom);
     }
 
     protected void setProperties()
