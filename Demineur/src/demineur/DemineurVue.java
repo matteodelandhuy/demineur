@@ -1,6 +1,7 @@
 package demineur;
 
 import demineur.menu.DemineurMenu;
+import divers.MyFrame;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
@@ -11,7 +12,7 @@ import javax.swing.JPanel;
  *
  * @author Maxime GASTON, Alexis DEBERG
  */
-public class DemineurVue extends JFrame
+public class DemineurVue extends MyFrame
 {
     public DemineurVue()
     {
@@ -23,8 +24,7 @@ public class DemineurVue extends JFrame
 
     private void setProprietes()
     {
-        this.setVisible(true);
-        this.pack();
+        super.setProperties();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
