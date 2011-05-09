@@ -5,9 +5,7 @@
 
 package grille;
 
-import divers.MyException;
 import java.awt.GridLayout;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -39,21 +37,19 @@ public class GrilleVue extends JPanel{
 
     public void decouvrirCase(int x, int y){
         _grille.get_case(x, y).decouvrir();
-        if(_grille.get_case(x, y).get_mine())
-            _buttons[x][y].setText("M");
-        else _buttons[x][y].setText(".");
-        /*        if(_grille.get_case(x, y).get_mine())
-            _buttons[x][y].setText("X");
-        else _buttons[x][y].setText(".");
-  */  }
+        if(_grille.get_case(x, y).get_mine()){
+            _buttons[x][y].decouvrirMine();
+        }
+        else _buttons[x][y].decouvrirVide(_grille.get_case(x,y).get_nbMinesProximite());
+    }
 
     public void poserDrapeau(int x, int y){
         if(_grille.get_case(x, y).get_drapeau() == false){
             _grille.get_case(x, y).set_drapeau(true);
-            _buttons[x][y].setText("!");
+            _buttons[x][y].poserDrapeau();
         }
         else{
-            _buttons[x][y].setText(" ");
+            _buttons[x][y].enleverDrapeau();
             _grille.get_case(x, y).set_drapeau(false);
         }
     }

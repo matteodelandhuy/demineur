@@ -27,4 +27,20 @@ public class CaseVue extends JButton {
         _posY = posY;
         this.setPreferredSize(new Dimension(this.WIDTH_CASE,this.HEIGHT_CASE));
     }
+
+    public void decouvrirVide(int num){
+        this.setText(""+num);
+    }
+
+    public void decouvrirMine(){
+        this.setText("M");
+    }
+
+    public void poserDrapeau(){
+        this.setText("!");
+    }
+
+    public void enleverDrapeau(){
+        this.setText(" ");
+    }
 }
