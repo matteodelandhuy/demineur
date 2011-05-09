@@ -240,6 +240,14 @@ public class Grille
         }
     }
 
+    int get_nbColonnes(){
+        return this._nbColonnes;
+    }
+
+    int get_nbLignes(){
+        return this._nbLignes;
+    }
+
     /**
      * Méthode permettant l'affichage formaté dans un terminal.
      * @return chaine de caractère formatée décrivant la grille.
