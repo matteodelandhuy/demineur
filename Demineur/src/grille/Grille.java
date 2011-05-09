@@ -240,12 +240,17 @@ public class Grille
         }
     }
 
-    int get_nbColonnes(){
+    public int get_nbColonnes(){
         return this._nbColonnes;
     }
 
-    int get_nbLignes(){
+    public int get_nbLignes(){
         return this._nbLignes;
+    }
+
+    public Case get_case(int x, int y){
+        //return new Case(true);
+        return _grille[x][y];
     }
 
     /**
