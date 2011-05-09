@@ -17,19 +17,57 @@ import javax.swing.JTextField;
 public class PersonaliserGrilleVue extends MyFrame implements InterfaceChoixGrille
 {
 
+    /**
+     * Constante correspondant au nombre maximum de lignes que l'on peut saisir.
+     */
     public static final int NB_MAX_LIGNES = 25;
+    /**
+* Constante correspondant au nombre maximum de colonnes que l'on peut saisir.
+     */
     public static final int NB_MAX_COLONNES = 25;
+    /**
+     * Constante correspondant au nombre maximum de mines que l'on peut saisir.
+     */
     public static final int NB_MAX_MINES = 200;
+    /**
+     * Constante correspondant au nom de la fenêtre.
+     */
     private static final String NOM_FENETRE = "Personaliser la grille";
+    /**
+     * Intitulé du message précédant la saisie du nombre de lignes.
+     */
     private static final String LBL_LIGNES = "Nombre de lignes : ";
+    /**
+     * Intitulé du message précédant la saisie du nombre de colonnes.
+     */
     private static final String LBL_COLONNES = "Nombre de colonnes : ";
+    /**
+     * Intitulé du message précédant la saisie du nombre de mines.
+     */
     private static final String LBL_MINES = "Nombre de mines : ";
+    /**
+     * Champ de saisie du nombre de lignes.
+     */
     private JTextField _nbLignes;
+    /**
+     * Champ de saisie du nombre de colonnes
+     */
     private JTextField _nbColonnes;
+    /**
+     * Champ de saisie du nombre de mines.
+     */
     private JTextField _nbMines;
+    /**
+     * Bouton valider permettant de vérifier la cohérence des données saisies et la création d'une grille correspondant.
+     */
     private JButton _btnOk;
+    /**
+     * Bouton annuler permettant de revenir à la fenêtre principale.
+     */
     private JButton _btnAnnuler;
-
+    /**
+     * Constructeur de la fenêtre permettant de choisir les dimensions d'une grille.
+     */
     public PersonaliserGrilleVue()
     {
         super(PersonaliserGrilleVue.NOM_FENETRE);

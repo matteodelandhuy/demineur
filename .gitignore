@@ -1,6 +1,8 @@
-# Diver #
+# Divers #
 #########
 *.xml
+*.html
+*.css
 *.mf
 build
 nbproject

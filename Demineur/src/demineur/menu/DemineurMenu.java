@@ -17,6 +17,7 @@ import partie.Partie;
  * @see JMenu
  * @see JMenuItem
  * @see JRadioButtonMenuItem
+ * @see interfaceDemineurMenu
  */
 public class DemineurMenu extends JMenuBar implements interfaceDemineurMenu
 {
@@ -96,7 +97,8 @@ public class DemineurMenu extends JMenuBar implements interfaceDemineurMenu
         menuPartie.add(this._quitter);
 
         //Ajout des items du menu "?"
-
+        JMenuItem aide = new JMenuItem("Aide");
+        menuAide.add(aide);
 
     }
 
