@@ -3,6 +3,7 @@ package grille;
 import divers.MyException;
 import divers.MyFrame;
 import java.awt.GridLayout;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,6 +17,9 @@ import javax.swing.JTextField;
 public class PersonaliserGrilleVue extends MyFrame implements InterfaceChoixGrille
 {
 
+    public static final int NB_MAX_LIGNES = 25;
+    public static final int NB_MAX_COLONNES = 25;
+    public static final int NB_MAX_MINES = 200;
     private static final String NOM_FENETRE = "Personaliser la grille";
     private static final String LBL_LIGNES = "Nombre de lignes : ";
     private static final String LBL_COLONNES = "Nombre de colonnes : ";
@@ -31,8 +35,9 @@ public class PersonaliserGrilleVue extends MyFrame implements InterfaceChoixGril
         super(PersonaliserGrilleVue.NOM_FENETRE);
 
         JPanel panel = new JPanel();
+        panel.setBorder(BorderFactory.createEmptyBorder(15, 20, 20, 20));
         this.add(panel);
-        panel.setLayout(new GridLayout(4,2));
+        panel.setLayout(new GridLayout(4, 2));
 
         // Zone de saisie
         JLabel lblLignes = new JLabel(PersonaliserGrilleVue.LBL_LIGNES);
@@ -49,7 +54,7 @@ public class PersonaliserGrilleVue extends MyFrame implements InterfaceChoixGril
         panel.add(lblMines);
         this._nbMines = new JTextField(3);
         panel.add(this._nbMines);
-        
+
 
         // Zone des boutons
         this._btnOk = new JButton("Ok");
@@ -68,17 +73,34 @@ public class PersonaliserGrilleVue extends MyFrame implements InterfaceChoixGril
 
     public void verificationTaille() throws MyException
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if ((Integer.parseInt(this._nbLignes.getText()) > PersonaliserGrilleVue.NB_MAX_LIGNES) || (Integer.parseInt(this._nbLignes.getText()) <= 0)
+                || (Integer.parseInt(this._nbColonnes.getText()) > PersonaliserGrilleVue.NB_MAX_COLONNES) || (Integer.parseInt(this._nbColonnes.getText()) <= 0)
+                || (Integer.parseInt(this._nbMines.getText()) > PersonaliserGrilleVue.NB_MAX_MINES) || (Integer.parseInt(this._nbMines.getText()) <= 0))
+        {
+            throw new MyException("Dimensions incorrectes");
+        }
     }
 
     public void verificationNbMines() throws MyException
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (Integer.parseInt(this._nbMines.getText()) > (Integer.parseInt(this._nbLignes.getText())) * (Integer.parseInt(this._nbColonnes.getText())))
+        {
+            throw new MyException("Plus de mines que de cases? VRAIMENT!??!");
+        }
     }
 
-    public Grille valider()
+    public Grille valider() throws MyException
     {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try
+        {
+            verificationTaille();
+            verificationNbMines();
+        } catch (MyException e)
+        {
+            throw e;
+        }
+        return new Grille(Integer.parseInt(this._nbLignes.getText()),Integer.parseInt(this._nbColonnes.getText()),Integer.parseInt(this._nbMines.getText()));
+
     }
 
     public void annuler()
