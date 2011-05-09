@@ -102,13 +102,19 @@ public class PersonaliserGrilleVue extends MyFrame implements InterfaceChoixGril
 
         this.setProprietes();
     }
-
+    /**
+     * Méthode permettant de définir les propriétés de la fenêtre.
+     * @see MyFrame
+     */
     private void setProprietes()
     {
         super.setProperties();
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
-
+    /**
+     * Méthode permettant de limiter grâce à des constantes les dimensions de la grille.
+     * @throws message d'erreur en cas de grille aux dimensions trop grandes, nulles ou négatives.
+     */
     public void verificationTaille() throws MyException
     {
         if ((Integer.parseInt(this._nbLignes.getText()) > PersonaliserGrilleVue.NB_MAX_LIGNES) || (Integer.parseInt(this._nbLignes.getText()) <= 0)
@@ -118,7 +124,10 @@ public class PersonaliserGrilleVue extends MyFrame implements InterfaceChoixGril
             throw new MyException("Dimensions incorrectes");
         }
     }
-
+    /**
+     * Méthode permettant de vérifier qu'il n'y a pas plus de mines que de cases.
+     * @throws message d'erreur si plus de mines que de cases.
+     */
     public void verificationNbMines() throws MyException
     {
         if (Integer.parseInt(this._nbMines.getText()) > (Integer.parseInt(this._nbLignes.getText())) * (Integer.parseInt(this._nbColonnes.getText())))
@@ -126,7 +135,11 @@ public class PersonaliserGrilleVue extends MyFrame implements InterfaceChoixGril
             throw new MyException("Plus de mines que de cases? VRAIMENT!??!");
         }
     }
-
+    /**
+     * Méthode appelant les 2 méthodes de vérification et renvoyant la grille si les tests sont passés.
+     * @return grille personalisée
+     * @throws message d'erreur si tests échoués.
+     */
     public Grille valider() throws MyException
     {
         try
@@ -140,7 +153,9 @@ public class PersonaliserGrilleVue extends MyFrame implements InterfaceChoixGril
         return new Grille(Integer.parseInt(this._nbLignes.getText()),Integer.parseInt(this._nbColonnes.getText()),Integer.parseInt(this._nbMines.getText()));
 
     }
-
+    /**
+     * Méthode permettant de quitter la fenêtre de personalisation de la grille.
+     */
     public void annuler()
     {
         throw new UnsupportedOperationException("Not supported yet.");
