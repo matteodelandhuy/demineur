@@ -75,6 +75,7 @@ public class Case
             this._drapeau = choix;
         }
     }
+
     /**
      * Getter pour l'attribut _mine.
      * @return true si la case est minée, false sinon.
@@ -83,7 +84,8 @@ public class Case
     {
         return this._mine;
     }
-/**
+
+    /**
      * Getter pour l'attribut _nbMinesProximite.
      * @return le nombre de mines à proximité de this.
      */
@@ -91,26 +93,29 @@ public class Case
     {
         return this._nbMinesProximite;
     }
-/**
- * Setter pour l'attribut _nbMinesProximite.
- * @param nombre de mines à proximité de this.
- */
+
+    /**
+     * Setter pour l'attribut _nbMinesProximite.
+     * @param nombre de mines à proximité de this.
+     */
     public void set_nbMinesProximite(int _nbMinesProximite)
     {
         this._nbMinesProximite = _nbMinesProximite;
     }
 
-/**
- * Méthode permettant d'afficher une case
- * @return "CASE MINÉE" si _mine vaut true, "CASE  OK " sinon.
- */
+    /**
+     * Méthode permettant d'afficher une case
+     * @return "CASE MINÉE" si _mine vaut true, "CASE  OK " sinon.
+     */
     @Override
     public String toString()
     {
         if (this.get_mine() == true)
+        {
             return "CASE MINÉE";
-        else
+        } else
+        {
             return "CASE   OK ";
+        }
     }
-
 }

@@ -7,15 +7,22 @@ import javax.swing.JFrame;
 /**
  *
  * @author Maxime GASTON, Alexis DEBERG
+ * @see JFrame
  */
 public abstract class MyFrame extends JFrame
 {
-
+    /**
+     * Constructeur de la fenêtre MyFrame.
+     * @param nom de la fenêtre.
+     */
     public MyFrame(String nom)
     {
         super(nom);
     }
 
+    /**
+     * Méthode permettant d'afficher ,dimensionner et centrer la fenêtre.
+     */
     protected void setProperties()
     {
         this.setResizable(false);
@@ -23,8 +30,10 @@ public abstract class MyFrame extends JFrame
         this.pack();
         this.centrer();
     }
-
-    protected void centrer()
+    /**
+     * Méthode permettant de centrer la fenêtre.
+     */
+    private void centrer()
     {
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         int w = getSize().width;
