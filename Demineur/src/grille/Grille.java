@@ -146,21 +146,33 @@ public class Grille
                 }
             }
         }
+        this.set_nbMinesAProximite();
+    }
+
+    private void set_nbMinesAProximite(){
+        for(int i=0;i<this._nbLignes;i++){
+            for(int j=0;j<this._nbColonnes;j++){
+                if(!_grille[i][j].get_mine())
+                    _grille[i][j].set_nbMinesProximite(this.nbMinesCase(i, j));
+            }
+        }
     }
 
     /**
      * Méthode permettant d'afficher dans la vue, l'indice montrant le nombre de mines à proximité de chaque case.
      */
-    public void afficherCase()
+/*    public void afficherCase()
     {
         for (int i = 0; i < this._nbLignes; i++)
         {
             for (int j = 0; j < this._nbColonnes; j++)
             {
-                this._grille[i][j].set_nbMinesProximite(nbMinesCase(i, j));
+                this._grille[i][j].nbMinesCase(i, j);
             }
         }
     }
+*/
+    /// TODO: Revoir cette fonction, le code est très 
     /**
      * Méthode retournant le nombre de mines à proximité de la case dont les coordonnées sont passées en paramètre.
      * @param indice de la ligne de la case
@@ -169,44 +181,88 @@ public class Grille
      */
     private int nbMinesCase(int x, int y)
     {
+        int nbMines = 0;
         if (x == 0)//première ligne
         {
             if (y == 0) //coin haut-gauche
-                return 1;
-            else if (y == this._nbColonnes)//coin haut-droit
-                return 1;
+            {
+                if(_grille[x+1][y+1].get_mine()) nbMines++;
+                if(_grille[x+1][y].get_mine()) nbMines++;
+                if(_grille[x][y+1].get_mine()) nbMines++;
+            }
+            else if (y == this._nbColonnes-1)//coin haut-droit
+            {
+                if(_grille[x+1][y-1].get_mine()) nbMines++;
+                if(_grille[x+1][y].get_mine()) nbMines++;
+                if(_grille[x][y-1].get_mine()) nbMines++;
+            }
             else//coté supérieur
-                return 1;
+            {
+                if(_grille[x][y-1].get_mine()) nbMines++;
+                if(_grille[x][y+1].get_mine()) nbMines++;
+
+                if(_grille[x+1][y-1].get_mine()) nbMines++;
+                if(_grille[x+1][y].get_mine()) nbMines++;
+                if(_grille[x+1][y+1].get_mine()) nbMines++;
+            }
         }
-        else if (x == this._nbLignes)//dernière ligne
+        else if (x == this._nbLignes-1)//dernière ligne
         {
             if (y == 0)//coin bas-gauche
-                return 1;
-            else if (y == this._nbColonnes)//coin bas-droit
-                return 1;
+            {
+                if(_grille[x-1][y].get_mine()) nbMines++;
+                if(_grille[x-1][y+1].get_mine()) nbMines++;
+                if(_grille[x][y+1].get_mine()) nbMines++;
+            }
+            else if (y == this._nbColonnes-1)//coin bas-droit
+            {
+                if(_grille[x-1][y].get_mine()) nbMines++;
+                if(_grille[x-1][y-1].get_mine()) nbMines++;
+                if(_grille[x][y-1].get_mine()) nbMines++;
+            }
             else
-                return 1;//coté inférieur
+            {
+                if(_grille[x][y-1].get_mine()) nbMines++;
+                if(_grille[x][y+1].get_mine()) nbMines++;
+                
+                if(_grille[x-1][y-1].get_mine()) nbMines++;
+                if(_grille[x-1][y].get_mine()) nbMines++;
+                if(_grille[x-1][y+1].get_mine()) nbMines++;
+            }
         }
         else if (y == 0)//première colonne
         {
-        if (x == 0) //coin haut-gauche
-                return 1;
-            else if (x == this._nbLignes)//coin bas-gauche
-                return 1;
-            else//coté gauche
-                return 1;
+            if(x!=0 && x!=this._nbLignes-1){
+                if(_grille[x-1][y].get_mine()) nbMines++;
+                if(_grille[x-1][y+1].get_mine()) nbMines++;
+                if(_grille[x][y+1].get_mine()) nbMines++;
+                if(_grille[x+1][y+1].get_mine()) nbMines++;
+                if(_grille[x+1][y].get_mine()) nbMines++;
+            }
         }
         else if (y == this._nbColonnes)//dernière colonne
         {
-        if (x == 0)//coin haut-droit
-                return 1;
-            else if (x == this._nbLignes)//coin bas-droit
-                return 1;
-            else
-                return 1;//coté droit
+            if(x!=0 && x!=this._nbLignes){
+                if(_grille[x-1][y].get_mine()) nbMines++;
+                if(_grille[x-1][y-1].get_mine()) nbMines++;
+                if(_grille[x][y-1].get_mine()) nbMines++;
+                if(_grille[x+1][y-1].get_mine()) nbMines++;
+                if(_grille[x+1][y].get_mine()) nbMines++;
+            }
         }
         else//intérieur de la grille
-            return 0;
+        {
+            for(int a=x-1;a<x+1;a++){
+                for(int b=y-1;b<y+1;b++){
+                    if(a != x && b != y){
+                        System.out.println(a+" "+b);
+                        if(_grille[a][b].get_mine()) nbMines++;
+                    }
+                }
+            } 
+        }
+
+        return nbMines;
     }
 
     /**
