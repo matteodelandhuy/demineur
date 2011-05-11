@@ -56,12 +56,12 @@ public class GrilleVue extends JPanel{
             if(_grille.get_case(x, y).get_drapeau() == false){
                 _grille.get_case(x, y).set_drapeau(true);
                 _buttons[x][y].poserDrapeau();
-                _buttons[x][y].setBackground(Color.orange);
+                //_buttons[x][y].setBackground(Color.orange);
             }
             else{
                 _grille.get_case(x, y).set_drapeau(false);
                 _buttons[x][y].enleverDrapeau();
-                _buttons[x][y].setBackground(_defaultColor);
+                //_buttons[x][y].setBackground(_defaultColor);
             }
         }
     }
