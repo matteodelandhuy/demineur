@@ -7,6 +7,7 @@ public class DemineurApp
 {
     public static void main(String [] args)
     {
-        DemineurVue vue = new DemineurVue();
+        DemineurModele modele = new DemineurModele();
+        DemineurVue vue = new DemineurVue(modele.getGrille());
     }
 }
