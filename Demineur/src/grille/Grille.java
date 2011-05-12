@@ -172,7 +172,6 @@ public class Grille
         }
     }
 */
-    /// TODO: Revoir cette fonction, le code est très 
     /**
      * Méthode retournant le nombre de mines à proximité de la case dont les coordonnées sont passées en paramètre.
      * @param indice de la ligne de la case
@@ -234,6 +233,19 @@ public class Grille
     public Case get_case(int x, int y){
         //return new Case(true);
         return _grille[x][y];
+    }
+
+    public void partiePerdue(){
+        toutDecouvrir();
+    }
+
+    private void toutDecouvrir(){
+        for(int i=0;i<this._nbLignes;i++){
+            for(int j=0;j<this._nbColonnes;j++){
+                if(!_grille[i][j].get_decouvert())
+                    _grille[i][j].decouvrir();
+            }
+        }
     }
 
     /**
