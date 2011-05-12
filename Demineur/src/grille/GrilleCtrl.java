@@ -5,9 +5,10 @@
 
 package grille;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,8 +32,11 @@ public class GrilleCtrl implements MouseListener {
     }
 */
     public void mouseClicked(MouseEvent e) {
-        if(e.getButton() == e.BUTTON1)
+        if(e.getButton() == e.BUTTON1){
             _grilleVue.decouvrirCase(_posX, _posY);
+            if(_grille.get_case(_posX, _posY).get_mine())
+                this.partiePerdue();
+        }
         else if(e.getButton() == e.BUTTON3)
             _grilleVue.poserDrapeau(_posX, _posY);
     }
@@ -51,5 +55,9 @@ public class GrilleCtrl implements MouseListener {
 
     public void mouseExited(MouseEvent e) {
         
+    }
+
+    public void partiePerdue(){
+        JOptionPane.showMessageDialog(new JFrame(), "Vous avez perdu !");
     }
 }

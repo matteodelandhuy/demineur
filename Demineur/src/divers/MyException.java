@@ -5,6 +5,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Classe basique d'exceptions permettant de donner un message d'erreur.
+ * Cette classe permet de récupérer le message sous forme de String ou bien via une boite de dialogue auquel il est possible d'ajouter un message complémentaire.
  * @author Maxime GASTON, Alexis DEBERG
  * @see Throwable
  */
@@ -12,13 +13,13 @@ public class MyException extends Throwable
 {
 
     /**
-     * Description de l'erreur par un bref message
+     * Description de l'erreur par un bref message.
      */
     private String _messageErreur;
 
     /**
-     * Constructeur de l'erreur
-     * @param message de l'erreur
+     * Constructeur de l'erreur.
+     * @param messageErreur message de l'erreur.
      */
     public MyException(String messageErreur)
     {
@@ -42,8 +43,8 @@ public class MyException extends Throwable
         JOptionPane.showMessageDialog(new JFrame(), this._messageErreur, "Erreur!",JOptionPane.ERROR_MESSAGE);
     }
     /**
-     * Affichage d'une boite de dialogue décrivant l'erreur.
-     * @param message complémentaire pour des action effectuées en conséquence de l'erreur.
+     * Affichage d'une boite de dialogue décrivant l'erreur avec un message complémentaire, par exemple la conséquence de l'erreur.
+     * @param message_complementaire message complémentaire pour des action effectuées en conséquence de l'erreur.
      */
     public void show_erreur(String message_complementaire)
     {

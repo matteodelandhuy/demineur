@@ -12,6 +12,8 @@ import partie.Partie;
 
 /**
  * Classe correspondant à la barre de menus du démineur.
+ * La barre de menus contient 2 menus : Partie et ?.
+ * Partie permet de lancer une nouvelle partie, de sélectionner la difficulté ou de personnaliser une grille et de quitter l'application.
  * @author Maxime GASTON, Alexis DEBERG
  * @see JMenuBar
  * @see JMenu
@@ -34,11 +36,29 @@ public class DemineurMenu extends JMenuBar implements interfaceDemineurMenu
      * Constante : nombre correspondant au niveau difficile
      */
     public static final int NIVEAU_DIFFICILE = 3;
+    /**
+     * Constante : intitulé de l'item nouvelle partie.
+     */
     private static final String NOUVELLE_PARTIE = "Nouvelle partie";
+    /**
+     * Constante : intitulé de l'item permettant de choisir une partie facile.
+     */
     private static final String FACILE = "Facile";
+    /**
+     * Constante : intitulé de l'item permettant de choisir une partie moyenne.
+     */
     private static final String MOYEN = "Moyen";
+    /**
+     * Constante : intitulé de l'item permettant de choisir une partie difficile.
+     */
     private static final String DIFFICILE = "Difficile";
+    /**
+     * Constante : intitulé de l'item permettant de choisir les dimensions et le nombre de mines de la grille.
+     */
     private static final String PERSONALISER = "Personaliser";
+    /**
+     * Constante : intitulé de l'item quitter.
+     */
     private static final String QUITTER = "Quitter";
     /**
      * Element "Nouvelle Partie" du menu "Partie".
@@ -67,6 +87,7 @@ public class DemineurMenu extends JMenuBar implements interfaceDemineurMenu
 
     /**
      * Constructeur de la barre de menu.
+     * Le constructeur créé tous les items des deux menus de la barre.
      */
     public DemineurMenu()
     {
@@ -104,7 +125,7 @@ public class DemineurMenu extends JMenuBar implements interfaceDemineurMenu
 
     /**
      * Méthode permettant de lancer une nouvelle Partie avec la Grille choisie.
-     * @param grille choisie (par défaut en facile)
+     * @param g grille choisie (par défaut en facile)
      * @return nouvelle partie.
      */
     public Partie nouvellePartie(Grille g)
@@ -114,7 +135,7 @@ public class DemineurMenu extends JMenuBar implements interfaceDemineurMenu
 
     /**
      * Méthode permettant de choisir un nveau de difficulté.
-     * @param difficulté choisie : 0 = personalisée, 1 = facile, 2 = moyen, 3 = difficile
+     * @param niveau difficulté choisie : 0 = personalisée, 1 = facile, 2 = moyen, 3 = difficile
      * @return  grille correspondant au niveau choisi.
      * @throws erreur de type MyException si le niveau n'est pas 1, 2 ou 3.
      */

@@ -5,7 +5,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 /**
- *
+ * Classe permettant de créer des fenêtres disposant d'une méthode
  * @author Maxime GASTON, Alexis DEBERG
  * @see JFrame
  */
@@ -13,6 +13,7 @@ public abstract class MyFrame extends JFrame
 {
     /**
      * Constructeur de la fenêtre MyFrame.
+     * Le but de cette classe est de disposer d'une méthode permettant de définir des options par défaut : taille, affichage, centrage, redimensionnement.
      * @param nom de la fenêtre.
      */
     public MyFrame(String nom)
@@ -21,7 +22,7 @@ public abstract class MyFrame extends JFrame
     }
 
     /**
-     * Méthode permettant d'afficher ,dimensionner et centrer la fenêtre.
+     * Méthode permettant d'afficher, dimensionner, centrer la fenêtre et la rendre impossible à redimensionner..
      */
     protected void setProperties()
     {

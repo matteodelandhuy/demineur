@@ -1,7 +1,8 @@
 package grille;
 
 /**
- *
+ * Classe permettant de définir des objets cases.
+ * Il est possible de savoir si la case est minée ou non, si un drapeau est posé dessus ou non, ainsi que le nombre de mines à proximité de la case.
  * @author Maxime GASTON, Alexis DEBERG
  */
 public class Case
@@ -26,7 +27,7 @@ public class Case
 
     /**
      * Constructeur d'une case.
-     * @param true si la case est minée, false sinon.
+     * @param mine true si la case est minée, false sinon.
      */
     public Case(boolean mine)
     {
@@ -66,7 +67,7 @@ public class Case
 
     /**
      * Méthode permettant de mettre ou d'enlever un drapeau sur une case non découverte.
-     * @param _drapeau
+     * @param choix true si on veut mettre un drapeau, false si on veut l'enlever.
      */
     public void set_drapeau(boolean choix)
     {
@@ -96,7 +97,7 @@ public class Case
 
     /**
      * Setter pour l'attribut _nbMinesProximite.
-     * @param nombre de mines à proximité de this.
+     * @param _nbMinesProximite nombre de mines à proximité de la mine.
      */
     public void set_nbMinesProximite(int _nbMinesProximite)
     {
@@ -104,7 +105,7 @@ public class Case
     }
 
     /**
-     * Méthode permettant d'afficher une case
+     * Méthode permettant d'afficher une case dans un terminal.
      * @return "CASE MINÉE" si _mine vaut true, "CASE  OK " sinon.
      */
     @Override

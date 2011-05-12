@@ -32,7 +32,7 @@ public class Partie
 
     /**
      * Constructeur prenant une grille en paramètre.
-     * @param grille choisie pour la partie.
+     * @param grille grille choisie pour la partie.
      */
     public Partie(Grille grille)
     {
@@ -59,7 +59,7 @@ public class Partie
 
     /**
      * Méthode permettant de définir une grille pour cette partie.
-     * @param grille de la partie.
+     * @param g grille de la partie.
      */
     public void set_grille(Grille g)
     {

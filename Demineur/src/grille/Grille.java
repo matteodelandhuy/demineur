@@ -69,12 +69,17 @@ public class Grille
      * Nombre de drapeaux posés sur la grille.
      */
     private int _nbDrapeaux = 0;
-
+    public Grille()
+    {
+        this._nbLignes = Grille.DEF_NB_LIGNES_FACILE;
+        this._nbColonnes = Grille.DEF_NB_COLONNES_FACILE;
+        this._nbMines = Grille.DEF_NB_MINES_FACILE;
+    }
     /**
      * Constructeur avec paramètres.
-     * @param nombre de lignes
-     * @param nombre de colonnes
-     * @param nombre de mines
+     * @param nbLignes nombre de lignes
+     * @param nbColonnes nombre de colonnes
+     * @param nbMines nombre de mines
      */
     public Grille(int nbLignes, int nbColonnes, int nbMines)
     {
@@ -146,67 +151,49 @@ public class Grille
                 }
             }
         }
+        this.set_nbMinesAProximite();
+    }
+
+    private void set_nbMinesAProximite(){
+        for(int i=0;i<this._nbLignes;i++){
+            for(int j=0;j<this._nbColonnes;j++){
+                if(!_grille[i][j].get_mine())
+                    _grille[i][j].set_nbMinesProximite(this.nbMinesCase(i, j));
+            }
+        }
     }
 
     /**
      * Méthode permettant d'afficher dans la vue, l'indice montrant le nombre de mines à proximité de chaque case.
      */
-    public void afficherCase()
+/*    public void afficherCase()
     {
         for (int i = 0; i < this._nbLignes; i++)
         {
             for (int j = 0; j < this._nbColonnes; j++)
             {
-                this._grille[i][j].set_nbMinesProximite(nbMinesCase(i, j));
+                this._grille[i][j].nbMinesCase(i, j);
             }
         }
     }
+*/
     /**
      * Méthode retournant le nombre de mines à proximité de la case dont les coordonnées sont passées en paramètre.
-     * @param indice de la ligne de la case
-     * @param indice de la colonne de la case
+     * @param x indice de la ligne de la case
+     * @param y indice de la colonne de la case
      * @return nombre de mines à proximité
      */
-    private int nbMinesCase(int x, int y)
-    {
-        if (x == 0)//première ligne
-        {
-            if (y == 0) //coin haut-gauche
-                return 1;
-            else if (y == this._nbColonnes)//coin haut-droit
-                return 1;
-            else//coté supérieur
-                return 1;
+    private int nbMinesCase(int x, int y){
+        int nbMines = 0;
+        for(int i=x-1;i<=x+1;i++){
+            for(int j=y-1;j<=y+1;j++){
+                if(i>=0 && i<this._nbLignes && j>=0 && j<this._nbColonnes){
+                    if(_grille[i][j].get_mine()) nbMines++;
+                }
+            }
         }
-        else if (x == this._nbLignes)//dernière ligne
-        {
-            if (y == 0)//coin bas-gauche
-                return 1;
-            else if (y == this._nbColonnes)//coin bas-droit
-                return 1;
-            else
-                return 1;//coté inférieur
-        }
-        else if (y == 0)//première colonne
-        {
-        if (x == 0) //coin haut-gauche
-                return 1;
-            else if (x == this._nbLignes)//coin bas-gauche
-                return 1;
-            else//coté gauche
-                return 1;
-        }
-        else if (y == this._nbColonnes)//dernière colonne
-        {
-        if (x == 0)//coin haut-droit
-                return 1;
-            else if (x == this._nbLignes)//coin bas-droit
-                return 1;
-            else
-                return 1;//coté droit
-        }
-        else//intérieur de la grille
-            return 0;
+        
+        return nbMines;
     }
 
     /**

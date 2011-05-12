@@ -5,10 +5,8 @@
 
 package grille;
 
-import divers.MyException;
+import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 /**
@@ -20,12 +18,14 @@ public class CaseVue extends JButton {
     public final int HEIGHT_CASE = 55;
     private int _posX;
     private int _posY;
+    private Color _defaultColor;
 
     public CaseVue(int posX,int posY){
         super(" ");
         _posX = posX;
         _posY = posY;
         this.setPreferredSize(new Dimension(this.WIDTH_CASE,this.HEIGHT_CASE));
+        _defaultColor = this.getBackground();
     }
 
     public void decouvrirVide(int num){
@@ -33,14 +33,17 @@ public class CaseVue extends JButton {
     }
 
     public void decouvrirMine(){
+        this.setBackground(Color.red);
         this.setText("M");
     }
 
     public void poserDrapeau(){
+        this.setBackground(Color.orange);
         this.setText("!");
     }
 
     public void enleverDrapeau(){
+        this.setBackground(_defaultColor);
         this.setText(" ");
     }
 }
