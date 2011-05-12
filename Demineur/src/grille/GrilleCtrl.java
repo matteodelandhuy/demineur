@@ -59,5 +59,7 @@ public class GrilleCtrl implements MouseListener {
 
     public void partiePerdue(){
         JOptionPane.showMessageDialog(new JFrame(), "Vous avez perdu !");
+        _grille.partiePerdue();
+        _grilleVue.partiePerdue();
     }
 }

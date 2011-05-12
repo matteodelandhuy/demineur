@@ -65,6 +65,18 @@ public class GrilleVue extends JPanel{
             }
         }
     }
+    
+    public void partiePerdue(){
+        toutDecouvrir();
+    }
+
+    private void toutDecouvrir(){
+        for(int i=0;i<_grille.get_nbLignes();i++){
+            for(int j=0;j<_grille.get_nbColonnes();j++){
+               decouvrirCase(i,j);
+            }
+        }
+    }
 
     public static void main(String args[]){
         /*JFrame frame = new JFrame();

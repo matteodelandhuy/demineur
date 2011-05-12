@@ -240,6 +240,19 @@ public class Grille
         return _grille[x][y];
     }
 
+    public void partiePerdue(){
+        toutDecouvrir();
+    }
+
+    private void toutDecouvrir(){
+        for(int i=0;i<this._nbLignes;i++){
+            for(int j=0;j<this._nbColonnes;j++){
+                if(!_grille[i][j].get_decouvert())
+                    _grille[i][j].decouvrir();
+            }
+        }
+    }
+
     /**
      * Méthode permettant l'affichage formaté dans un terminal.
      * @return chaine de caractère formatée décrivant la grille.
