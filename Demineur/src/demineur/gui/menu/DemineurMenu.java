@@ -1,42 +1,27 @@
-package demineur.menu;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-import divers.MyException;
-import grille.PersonaliserGrilleVue;
-import grille.Grille;
+package demineur.gui.menu;
+
+import demineur.InterfaceDemineurMenu;
+import demineur.Demineur;
+import demineur.gui.DemineurGui;
+import demineur.tools.MyException;
+import demineur.Grille;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JSeparator;
-import partie.Partie;
 
 /**
- * Classe correspondant à la barre de menus du démineur.
- * La barre de menus contient 2 menus : Partie et ?.
- * Partie permet de lancer une nouvelle partie, de sélectionner la difficulté ou de personnaliser une grille et de quitter l'application.
- * @author Maxime GASTON, Alexis DEBERG
- * @see JMenuBar
- * @see JMenu
- * @see JMenuItem
- * @see JRadioButtonMenuItem
- * @see interfaceDemineurMenu
+ *
+ * @author alexis
  */
-public class DemineurMenu extends JMenuBar implements interfaceDemineurMenu
-{
-
-    /**
-     * Constante : nombre correspondant au niveau facile
-     */
-    public static final int NIVEAU_FACILE = 1;
-    /**
-     * Constante : nombre correspondant au niveau moyen
-     */
-    public static final int NIVEAU_MOYEN = 2;
-    /**
-     * Constante : nombre correspondant au niveau difficile
-     */
-    public static final int NIVEAU_DIFFICILE = 3;
-    /**
+public class DemineurMenu extends JMenuBar implements InterfaceDemineurMenu {
+        /**
      * Constante : intitulé de l'item nouvelle partie.
      */
     private static final String NOUVELLE_PARTIE = "Nouvelle partie";
@@ -85,14 +70,13 @@ public class DemineurMenu extends JMenuBar implements interfaceDemineurMenu
      */
     private JMenuItem _quitter;
 
-    /**
-     * Constructeur de la barre de menu.
-     * Le constructeur créé tous les items des deux menus de la barre.
-     */
-    public DemineurMenu()
-    {
-        // Ajout des menus
-        super();
+
+    DemineurGui _parent;
+
+    public DemineurMenu(DemineurGui p){
+       super();
+       _parent = p;
+
         JMenu menuPartie = new JMenu("Partie");
         JMenu menuAide = new JMenu("?");
         this.add(menuPartie);
@@ -120,53 +104,32 @@ public class DemineurMenu extends JMenuBar implements interfaceDemineurMenu
         //Ajout des items du menu "?"
         JMenuItem aide = new JMenuItem("Aide");
         menuAide.add(aide);
-
     }
 
-    /**
-     * Méthode permettant de lancer une nouvelle Partie avec la Grille choisie.
-     * @param g grille choisie (par défaut en facile)
-     * @return nouvelle partie.
-     */
-    public Partie nouvellePartie(Grille g)
-    {
-        return new Partie(g);
+    public void nouvellePartie() {
+        _parent.nouvellePartie();
     }
 
-    /**
-     * Méthode permettant de choisir un nveau de difficulté.
-     * @param niveau difficulté choisie : 0 = personalisée, 1 = facile, 2 = moyen, 3 = difficile
-     * @return  grille correspondant au niveau choisi.
-     * @throws erreur de type MyException si le niveau n'est pas 1, 2 ou 3.
-     */
-    public Grille choixNiveau(int niveau) throws MyException
-    {
+    public Grille choixNiveau(int niveau) throws MyException {
         switch (niveau)
         {
-            case DemineurMenu.NIVEAU_FACILE:
-                return new Grille(Grille.DEF_NB_LIGNES_FACILE, Grille.DEF_NB_COLONNES_FACILE, Grille.DEF_NB_MINES_FACILE);
-            case DemineurMenu.NIVEAU_MOYEN:
-                return new Grille(Grille.DEF_NB_LIGNES_MOYEN, Grille.DEF_NB_COLONNES_MOYEN, Grille.DEF_NB_MINES_MOYEN);
-            case DemineurMenu.NIVEAU_DIFFICILE:
-                return new Grille(Grille.DEF_NB_LIGNES_DIFFICILE, Grille.DEF_NB_COLONNES_DIFFICILE, Grille.DEF_NB_MINES_DIFFICILE);
+            case Demineur.NIVEAU_FACILE:
+                return new Grille(_parent,Grille.DEF_NB_LIGNES_FACILE, Grille.DEF_NB_COLONNES_FACILE, Grille.DEF_NB_MINES_FACILE);
+            case Demineur.NIVEAU_MOYEN:
+                return new Grille(_parent,Grille.DEF_NB_LIGNES_MOYEN, Grille.DEF_NB_COLONNES_MOYEN, Grille.DEF_NB_MINES_MOYEN);
+            case Demineur.NIVEAU_DIFFICILE:
+                return new Grille(_parent,Grille.DEF_NB_LIGNES_DIFFICILE, Grille.DEF_NB_COLONNES_DIFFICILE, Grille.DEF_NB_MINES_DIFFICILE);
             default:
                 throw new MyException("Ce mode de difficulté n'existe pas.");
         }
     }
 
-    /**
-     * Méthode permettant d'appeler la fenêtre de choix des dimensions de la Grille (pour un partie personalisée).
-     */
-    public void choisirDimensions()
-    {
+    public void choisirDimensions() {
         PersonaliserGrilleVue choixGrille = new PersonaliserGrilleVue();
     }
 
-    /**
-     * Méthode permettant de quitter l'application.
-     */
-    public void quitter()
-    {
-        System.exit(0);
+    public void quitter() {
+        _parent.quitter();
     }
+
 }

@@ -1,21 +1,20 @@
-package demineur.menu;
+package demineur;
 
-import divers.MyException;
-import grille.Grille;
-import partie.Partie;
+import demineur.tools.MyException;
+
 
 /**
  * Interface permettant de définir les différentes méthodes utilisées par les items du menu Partie.
  * @author Maxime GASTON, Alexis DEBERG
  */
-public interface interfaceDemineurMenu
+public interface InterfaceDemineurMenu
 {
     /**
      * Méthode permettant de lancer une nouvelle Partie avec la Grille choisie.
      * @param g grille choisie (par défaut en facile)
-     * @return nouvelle partie
+     * @return
      */
-    public Partie nouvellePartie(Grille g);
+    public void nouvellePartie();
     /**
      * Méthode permettant de choisir un nveau de difficulté.
      * @param niveau difficulté choisie : 1 = facile, 2 = moyen, 3 = difficile
