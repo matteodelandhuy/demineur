@@ -19,10 +19,12 @@ import javax.swing.JOptionPane;
  */
 public class DemineurMenuCtrl implements ActionListener {
     DemineurGui _demineur;
+    DemineurMenu _menu;
     String _action;
 
-    public DemineurMenuCtrl(DemineurGui d, String a){
+    public DemineurMenuCtrl(DemineurMenu menu,DemineurGui d, String a){
         _demineur = d;
+        _menu = menu;
         _action = a;
     }
 
@@ -40,6 +42,8 @@ public class DemineurMenuCtrl implements ActionListener {
                 _demineur.nouvellePartie(Demineur.NIVEAU_MOYEN);
             else if(_action == DemineurMenu.DIFFICILE)
                 _demineur.nouvellePartie(Demineur.NIVEAU_DIFFICILE);
+            else if(_action == DemineurMenu.PERSONALISER)
+                _menu.choisirDimensions();
         }
         catch(MyException me){
             me.show_erreur();

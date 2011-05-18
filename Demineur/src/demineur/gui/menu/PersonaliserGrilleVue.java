@@ -3,8 +3,10 @@ package demineur.gui.menu;
 import demineur.InterfaceChoixGrille;
 import demineur.tools.MyException;
 import demineur.tools.MyFrame;
+import java.awt.Dimension;
 import java.awt.GridLayout;
-import javax.swing.BorderFactory;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,7 +17,7 @@ import javax.swing.JTextField;
  *
  * @author Maxime GASTON, Alexis DEBERG
  */
-public class PersonaliserGrilleVue extends MyFrame implements InterfaceChoixGrille
+public class PersonaliserGrilleVue extends MyFrame implements InterfaceChoixGrille,ActionListener
 {
 
     /**
@@ -66,42 +68,61 @@ public class PersonaliserGrilleVue extends MyFrame implements InterfaceChoixGril
      * Bouton annuler permettant de revenir à la fenêtre principale.
      */
     private JButton _btnAnnuler;
+
+    private DemineurMenu _parent;
     /**
      * Constructeur de la fenêtre permettant de choisir les dimensions d'une grille.
      */
-    public PersonaliserGrilleVue()
+    public PersonaliserGrilleVue(DemineurMenu m)
     {
         super(PersonaliserGrilleVue.NOM_FENETRE);
+        _parent = m;
 
         JPanel panel = new JPanel();
-        panel.setBorder(BorderFactory.createEmptyBorder(15, 20, 20, 20));
+//        panel.setBorder(BorderFactory.createEmptyBorder(15, 20, 20, 20));
+        panel.setLayout(new GridLayout(6,2));
         this.add(panel);
-        panel.setLayout(new GridLayout(4, 2));
 
-        // Zone de saisie
         JLabel lblLignes = new JLabel(PersonaliserGrilleVue.LBL_LIGNES);
+        JLabel lblColonnes = new JLabel(PersonaliserGrilleVue.LBL_COLONNES);
+        JLabel lblMines = new JLabel(PersonaliserGrilleVue.LBL_MINES);
+
+        _nbLignes = new JTextField(3);
+        _nbColonnes = new JTextField(3);
+        _nbMines = new JTextField(3);
+        _btnAnnuler = new JButton("Annuler");
+        _btnOk = new JButton("OK");
+
+        panel.add(lblLignes); panel.add(_nbLignes);
+        panel.add(lblColonnes); panel.add(_nbColonnes);
+        panel.add(lblMines); panel.add(_nbMines);
+        panel.add(new JLabel()); panel.add(new JLabel());
+        panel.add(_btnAnnuler); panel.add(_btnOk);
+
+        _btnOk.addActionListener(this);
+        _btnAnnuler.addActionListener(this);
+        setMinimumSize(new Dimension(300,150));
+/*
+        // Zone de saisie
         panel.add(lblLignes);
         this._nbLignes = new JTextField(3);
         panel.add(this._nbLignes);
 
-        JLabel lblColonnes = new JLabel(PersonaliserGrilleVue.LBL_COLONNES);
         panel.add(lblColonnes);
         this._nbColonnes = new JTextField(3);
         panel.add(this._nbColonnes);
 
-        JLabel lblMines = new JLabel(PersonaliserGrilleVue.LBL_MINES);
         panel.add(lblMines);
         this._nbMines = new JTextField(3);
         panel.add(this._nbMines);
-
 
         // Zone des boutons
         this._btnOk = new JButton("Ok");
         panel.add(this._btnOk);
         this._btnAnnuler = new JButton("Annuler");
         panel.add(this._btnAnnuler);
-
-        this.setProprietes();
+/* */
+       setProprietes();
     }
     /**
      * Méthode permettant de définir les propriétés de la fenêtre.
@@ -116,35 +137,41 @@ public class PersonaliserGrilleVue extends MyFrame implements InterfaceChoixGril
      * Méthode permettant de limiter grâce à des constantes les dimensions de la grille.
      * @throws message d'erreur en cas de grille aux dimensions trop grandes, nulles ou négatives.
      */
-    public void verificationTaille() throws MyException
+    public boolean verificationTaille()
     {
+        if(_nbLignes.getText().isEmpty() || _nbColonnes.getText().isEmpty() || _nbMines.getText().isEmpty())
+                return false;
+
         if ((Integer.parseInt(this._nbLignes.getText()) > PersonaliserGrilleVue.NB_MAX_LIGNES) || (Integer.parseInt(this._nbLignes.getText()) <= 0)
                 || (Integer.parseInt(this._nbColonnes.getText()) > PersonaliserGrilleVue.NB_MAX_COLONNES) || (Integer.parseInt(this._nbColonnes.getText()) <= 0)
                 || (Integer.parseInt(this._nbMines.getText()) > PersonaliserGrilleVue.NB_MAX_MINES) || (Integer.parseInt(this._nbMines.getText()) <= 0))
         {
-            throw new MyException("Dimensions incorrectes");
+            return false;
         }
+
+        return true;
     }
     /**
      * Méthode permettant de vérifier qu'il n'y a pas plus de mines que de cases.
      * @throws message d'erreur si plus de mines que de cases.
      */
-    public void verificationNbMines() throws MyException
+    public boolean verificationNbMines()
     {
         if (Integer.parseInt(this._nbMines.getText()) > (Integer.parseInt(this._nbLignes.getText())) * (Integer.parseInt(this._nbColonnes.getText())))
         {
-            throw new MyException("Plus de mines que de cases? VRAIMENT!??!");
+            return false;
         }
+
+        return true;
     }
     /**
      * Méthode appelant les 2 méthodes de vérification et renvoyant la grille si les tests sont passés.
      * @return grille personalisée
      * @throws message d'erreur si tests échoués.
      */
-    public void valider() throws MyException
+    public boolean valider()
     {
-        verificationTaille();
-        verificationNbMines();
+        return (verificationTaille() && verificationNbMines());
         //return new Grille(Integer.parseInt(this._nbLignes.getText()),Integer.parseInt(this._nbColonnes.getText()),Integer.parseInt(this._nbMines.getText()));
     }
     /**
@@ -155,8 +182,18 @@ public class PersonaliserGrilleVue extends MyFrame implements InterfaceChoixGril
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource().equals(_btnOk)){
+            try{ if(!valider()) throw new MyException("Dimensions incorrectes");
+            }catch(MyException me){ me.show_erreur(); }
+        }
+        else if(e.getSource().equals(_btnAnnuler)){
+            this.dispose();
+        }
+    }
+
     public static void main(String[] args)
     {
-        PersonaliserGrilleVue g = new PersonaliserGrilleVue();
+//        PersonaliserGrilleVue g = new PersonaliserGrilleVue();
     }
 }

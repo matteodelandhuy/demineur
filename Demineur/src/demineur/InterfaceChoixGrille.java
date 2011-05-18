@@ -8,8 +8,8 @@ import demineur.tools.MyException;
  */
 public interface InterfaceChoixGrille
 {
-    public void verificationTaille() throws MyException;
-    public void verificationNbMines() throws MyException;
-    public void valider()throws MyException;
+    public boolean verificationTaille();
+    public boolean verificationNbMines();
+    public boolean valider();
     public void annuler();
 }
