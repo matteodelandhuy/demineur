@@ -28,9 +28,16 @@ public class DemineurGui extends Demineur {
 
     public void nouvellePartie(int difficulte) throws MyException{
         _grille = setupGrille(difficulte);
+        super.initialiser();
         _vue.dispose();
         _vue = new DemineurGuiVue(this,_grille,_partie);
-//        nouvellePartie();
+    }
+
+    public void nouvellePartie(int lignes,int colonnes,int mines)throws MyException{
+        _grille = setupGrille(lignes,colonnes,mines);
+        super.initialiser();
+        _vue.dispose();
+        _vue = new DemineurGuiVue(this,_grille,_partie);
     }
 
     public void decouvreCase(int x, int y) {

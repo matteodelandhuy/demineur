@@ -69,6 +69,10 @@ public abstract class Demineur implements Commandes {
         return new Grille(this,nbLignes,nbColonnes,nbMines);
     }
 
+    protected Grille setupGrille(int nbLig,int nbCol,int nbMines)throws MyException{
+        return new Grille(this,nbLig,nbCol,nbMines);
+    }
+
     public Grille get_grille(){
         return _grille;
     }

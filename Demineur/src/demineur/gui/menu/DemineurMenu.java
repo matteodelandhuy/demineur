@@ -123,6 +123,10 @@ public class DemineurMenu extends JMenuBar implements InterfaceDemineurMenu {
         _parent.nouvellePartie();
     }
 
+    public void nouvellePartiePerso(int lig,int col,int mines){
+        _parent.nouvellePartie(lig, col, mines);
+    }
+
     public Grille choixNiveau(int niveau) throws MyException {
         switch (niveau)
         {

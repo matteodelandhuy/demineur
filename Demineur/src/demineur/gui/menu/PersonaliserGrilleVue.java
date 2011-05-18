@@ -172,23 +172,28 @@ public class PersonaliserGrilleVue extends MyFrame implements InterfaceChoixGril
     public boolean valider()
     {
         return (verificationTaille() && verificationNbMines());
-        //return new Grille(Integer.parseInt(this._nbLignes.getText()),Integer.parseInt(this._nbColonnes.getText()),Integer.parseInt(this._nbMines.getText()));
     }
-    /**
-     * Méthode permettant de quitter la fenêtre de personalisation de la grille.
-     */
-    public void annuler()
-    {
-        throw new UnsupportedOperationException("Not supported yet.");
+
+    public void annuler(){
+        dispose();
     }
 
     public void actionPerformed(ActionEvent e){
         if(e.getSource().equals(_btnOk)){
-            try{ if(!valider()) throw new MyException("Dimensions incorrectes");
+            try{ 
+                if(!valider())
+                    throw new MyException("Dimensions incorrectes");
+                else{
+                    int lig = Integer.parseInt(_nbLignes.getText());
+                    int col = Integer.parseInt(_nbColonnes.getText());
+                    int mines = Integer.parseInt(_nbMines.getText());
+                    _parent.nouvellePartiePerso(lig,col,mines);
+                    dispose();
+                }
             }catch(MyException me){ me.show_erreur(); }
         }
         else if(e.getSource().equals(_btnAnnuler)){
-            this.dispose();
+            annuler();
         }
     }
 

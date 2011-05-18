@@ -30,19 +30,19 @@ public class DemineurMenuCtrl implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         try{
-            if(_action == "Aide")
+            if(_action.equalsIgnoreCase("aide"))
                 JOptionPane.showMessageDialog(new JFrame("Aide"), "Pouetpouet","Aide",JOptionPane.PLAIN_MESSAGE);
-            else if(_action == DemineurMenu.QUITTER)
+            else if(_action.equalsIgnoreCase(DemineurMenu.QUITTER))
                 System.exit(0);
-            else if(_action == DemineurMenu.NOUVELLE_PARTIE)
+            else if(_action.equalsIgnoreCase(DemineurMenu.NOUVELLE_PARTIE))
                 _demineur.nouvellePartie();
-            else if(_action == DemineurMenu.FACILE)
+            else if(_action.equalsIgnoreCase(DemineurMenu.FACILE))
                 _demineur.nouvellePartie(Demineur.NIVEAU_FACILE);
-            else if(_action == DemineurMenu.MOYEN)
+            else if(_action.equalsIgnoreCase(DemineurMenu.MOYEN))
                 _demineur.nouvellePartie(Demineur.NIVEAU_MOYEN);
-            else if(_action == DemineurMenu.DIFFICILE)
+            else if(_action.equalsIgnoreCase(DemineurMenu.DIFFICILE))
                 _demineur.nouvellePartie(Demineur.NIVEAU_DIFFICILE);
-            else if(_action == DemineurMenu.PERSONALISER)
+            else if(_action.equalsIgnoreCase(DemineurMenu.PERSONALISER))
                 _menu.choisirDimensions();
         }
         catch(MyException me){
