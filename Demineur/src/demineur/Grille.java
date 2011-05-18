@@ -243,6 +243,10 @@ public class Grille
         return _grille[x][y];
     }
 
+    public int get_nbMines(){
+        return _nbMines;
+    }
+
     public void partiePerdue(){
         toutDecouvrir();
     }

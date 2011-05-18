@@ -77,7 +77,10 @@ public class GrilleVue extends JPanel {
     private void toutDecouvrir(){
         for(int i=0;i<_grille.get_nbLignes();i++){
             for(int j=0;j<_grille.get_nbColonnes();j++){
-               decouvrirCase(i,j);
+                if(_grille.get_case(i, j).get_mine())
+                    decouvrirCase(i,j);
+                else
+                    _buttons[i][j].setEnabled(false);
             }
         }
     }

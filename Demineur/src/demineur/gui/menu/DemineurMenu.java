@@ -24,27 +24,27 @@ public class DemineurMenu extends JMenuBar implements InterfaceDemineurMenu {
         /**
      * Constante : intitulé de l'item nouvelle partie.
      */
-    private static final String NOUVELLE_PARTIE = "Nouvelle partie";
+    public static final String NOUVELLE_PARTIE = "Nouvelle partie";
     /**
      * Constante : intitulé de l'item permettant de choisir une partie facile.
      */
-    private static final String FACILE = "Facile";
+    public static final String FACILE = "Facile";
     /**
      * Constante : intitulé de l'item permettant de choisir une partie moyenne.
      */
-    private static final String MOYEN = "Moyen";
+    public static final String MOYEN = "Moyen";
     /**
      * Constante : intitulé de l'item permettant de choisir une partie difficile.
      */
-    private static final String DIFFICILE = "Difficile";
+    public static final String DIFFICILE = "Difficile";
     /**
      * Constante : intitulé de l'item permettant de choisir les dimensions et le nombre de mines de la grille.
      */
-    private static final String PERSONALISER = "Personaliser";
+    public static final String PERSONALISER = "Personaliser";
     /**
      * Constante : intitulé de l'item quitter.
      */
-    private static final String QUITTER = "Quitter";
+    public static final String QUITTER = "Quitter";
     /**
      * Element "Nouvelle Partie" du menu "Partie".
      */
@@ -83,26 +83,38 @@ public class DemineurMenu extends JMenuBar implements InterfaceDemineurMenu {
         this.add(menuAide);
 
         //Ajout des items du menu "Partie"
-        this._nouvellePartie = new JMenuItem(DemineurMenu.NOUVELLE_PARTIE);
-        menuPartie.add(this._nouvellePartie);
+        _nouvellePartie = new JMenuItem(DemineurMenu.NOUVELLE_PARTIE);
+        _nouvellePartie.addActionListener(new DemineurMenuCtrl(_parent,DemineurMenu.NOUVELLE_PARTIE));
+        menuPartie.add(_nouvellePartie);
+
         menuPartie.add(new JSeparator());
-        this._partieFacile = new JRadioButtonMenuItem(DemineurMenu.FACILE);
-        this._partieFacile.setSelected(false);
-        menuPartie.add(this._partieFacile);
-        this._partieMoyen = new JRadioButtonMenuItem(DemineurMenu.MOYEN);
-        this._partieMoyen.setSelected(false);
-        menuPartie.add(this._partieMoyen);
-        this._partieDifficile = new JRadioButtonMenuItem(DemineurMenu.DIFFICILE);
-        menuPartie.add(this._partieDifficile);
-        this._partieDifficile.setSelected(false);
-        this._personaliser = new JMenuItem(DemineurMenu.PERSONALISER);
-        menuPartie.add(this._personaliser);
+
+        _partieFacile = new JRadioButtonMenuItem(DemineurMenu.FACILE);
+        _partieFacile.setSelected(true);
+        _partieFacile.addActionListener(new DemineurMenuCtrl(_parent,DemineurMenu.FACILE));
+        menuPartie.add(_partieFacile);
+
+        _partieMoyen = new JRadioButtonMenuItem(DemineurMenu.MOYEN);
+        _partieMoyen.setSelected(false);
+        _partieMoyen.addActionListener(new DemineurMenuCtrl(_parent,DemineurMenu.MOYEN));
+        menuPartie.add(_partieMoyen);
+
+        _partieDifficile = new JRadioButtonMenuItem(DemineurMenu.DIFFICILE);
+        _partieDifficile.setSelected(false);
+        _partieDifficile.addActionListener(new DemineurMenuCtrl(_parent,DemineurMenu.DIFFICILE));
+        menuPartie.add(_partieDifficile);
+
+        _personaliser = new JMenuItem(DemineurMenu.PERSONALISER);
+        menuPartie.add(_personaliser);
         menuPartie.add(new JSeparator());
-        this._quitter = new JMenuItem(DemineurMenu.QUITTER);
-        menuPartie.add(this._quitter);
+
+        _quitter = new JMenuItem(DemineurMenu.QUITTER);
+        _quitter.addActionListener(new DemineurMenuCtrl(_parent,DemineurMenu.QUITTER));
+        menuPartie.add(_quitter);
 
         //Ajout des items du menu "?"
         JMenuItem aide = new JMenuItem("Aide");
+        aide.addActionListener(new DemineurMenuCtrl(_parent,"Aide"));
         menuAide.add(aide);
     }
 

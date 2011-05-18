@@ -6,6 +6,7 @@
 package demineur.txt;
 
 import demineur.Demineur;
+import demineur.tools.MyException;
 
 /**
  *
@@ -13,17 +14,19 @@ import demineur.Demineur;
  */
 public class DemineurTxt extends Demineur {
 
-    @Override
     public void nouvellePartie() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Override
     public void decouvreCase(int x, int y) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void majDrapeau(int x, int y) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void nouvellePartie(int difficulte) throws MyException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 

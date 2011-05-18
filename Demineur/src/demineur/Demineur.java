@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package demineur;
 
 import demineur.tools.MyException;
@@ -40,6 +35,19 @@ public abstract class Demineur implements Commandes {
     }
 
     public Demineur(int niveau) throws MyException {
+        _grille = setupGrille(niveau);
+        
+        _grille.initialiser();
+        _partie = new Partie(this);
+    }
+
+    public Demineur(){
+        _grille = new Grille(this);
+        _grille.initialiser();
+        _partie = new Partie(this);
+    }
+
+    protected Grille setupGrille(int niveau) throws MyException{
         int nbLignes,nbColonnes,nbMines;
         switch(niveau){
             case NIVEAU_MOYEN:
@@ -58,15 +66,7 @@ public abstract class Demineur implements Commandes {
                 nbMines = Grille.DEF_NB_MINES_FACILE;
                 break;
         }
-        _grille = new Grille(this,nbLignes,nbColonnes,nbMines);
-        _grille.initialiser();
-        _partie = new Partie(this);
-    }
-
-    public Demineur(){
-        _grille = new Grille(this);
-        _grille.initialiser();
-        _partie = new Partie(this);
+        return new Grille(this,nbLignes,nbColonnes,nbMines);
     }
 
     public Grille get_grille(){
@@ -87,5 +87,6 @@ public abstract class Demineur implements Commandes {
     }
 
     public abstract void nouvellePartie();
+//    public abstract void nouvellePartie(int difficulte) throws MyException;
     public abstract void decouvreCase(int x,int y);
 }

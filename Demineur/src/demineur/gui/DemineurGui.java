@@ -6,6 +6,7 @@
 package demineur.gui;
 
 import demineur.Demineur;
+import demineur.tools.MyException;
 
 /**
  *
@@ -21,7 +22,15 @@ public class DemineurGui extends Demineur {
 
     public void nouvellePartie() {
         super.initialiser();
+        _vue.dispose();
         _vue = new DemineurGuiVue(this,_grille,_partie);
+    }
+
+    public void nouvellePartie(int difficulte) throws MyException{
+        _grille = setupGrille(difficulte);
+        _vue.dispose();
+        _vue = new DemineurGuiVue(this,_grille,_partie);
+//        nouvellePartie();
     }
 
     public void decouvreCase(int x, int y) {

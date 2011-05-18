@@ -48,11 +48,15 @@ public class DemineurGuiVue extends MyFrame{
     }
 
     public void start(){
-        _partieVue.demarrerPartie();
+        _partieVue.demarrer();
     }
 
     public void perdu(){
         _partieVue.stop();
         _controlleur.perdu();
+    }
+
+    public void gagne(){
+        _partieVue.stop();
     }
 }
