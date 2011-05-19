@@ -79,7 +79,6 @@ public class PersonaliserGrilleVue extends MyFrame implements InterfaceChoixGril
         _parent = m;
 
         JPanel panel = new JPanel();
-//        panel.setBorder(BorderFactory.createEmptyBorder(15, 20, 20, 20));
         panel.setLayout(new GridLayout(6,2));
         this.add(panel);
 
@@ -102,26 +101,6 @@ public class PersonaliserGrilleVue extends MyFrame implements InterfaceChoixGril
         _btnOk.addActionListener(this);
         _btnAnnuler.addActionListener(this);
         setMinimumSize(new Dimension(300,150));
-/*
-        // Zone de saisie
-        panel.add(lblLignes);
-        this._nbLignes = new JTextField(3);
-        panel.add(this._nbLignes);
-
-        panel.add(lblColonnes);
-        this._nbColonnes = new JTextField(3);
-        panel.add(this._nbColonnes);
-
-        panel.add(lblMines);
-        this._nbMines = new JTextField(3);
-        panel.add(this._nbMines);
-
-        // Zone des boutons
-        this._btnOk = new JButton("Ok");
-        panel.add(this._btnOk);
-        this._btnAnnuler = new JButton("Annuler");
-        panel.add(this._btnAnnuler);
-/* */
        setProprietes();
     }
     /**
@@ -195,10 +174,5 @@ public class PersonaliserGrilleVue extends MyFrame implements InterfaceChoixGril
         else if(e.getSource().equals(_btnAnnuler)){
             annuler();
         }
-    }
-
-    public static void main(String[] args)
-    {
-//        PersonaliserGrilleVue g = new PersonaliserGrilleVue();
     }
 }

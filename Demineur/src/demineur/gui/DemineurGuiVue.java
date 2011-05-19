@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package demineur.gui;
 
 import demineur.gui.menu.DemineurMenu;
@@ -65,5 +60,7 @@ public class DemineurGuiVue extends MyFrame{
 
     public void gagne(){
         _partieVue.stop();
+        _controlleur.gagne();
+        _grilleVue.decouvrirAutour(0, 0);
     }
 }

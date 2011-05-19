@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package demineur.gui;
 
 import demineur.Grille;
@@ -29,11 +24,7 @@ public class GrilleCtrl implements MouseListener {
         _posY = posY;
         _parentVue = p;
     }
-/*
-    public void actionPerformed(ActionEvent e) {
-        _grilleVue.decouvrirCase(_posX, _posY);
-    }
-*/
+
     public void mouseClicked(MouseEvent e) {
         if(!_parentVue.isStarted())
             _parentVue.start();
@@ -86,6 +77,5 @@ public class GrilleCtrl implements MouseListener {
     private void decouvrirAutour(int x,int y){
         _grille.decouvrirAutour(x,y);
         _grilleVue.decouvrirAutour(x,y);
-        //System.out.println(_grille);
     }
 }

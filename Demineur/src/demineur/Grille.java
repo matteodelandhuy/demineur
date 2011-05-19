@@ -136,7 +136,6 @@ public class Grille
                 pt = new Point(r.nextInt(this._nbLignes), r.nextInt(this._nbColonnes));
             } while (indexMines.indexOf(pt) != -1);
             indexMines.addElement(pt);
-            //System.out.println(indexMines.get(i));
         }
         //initialisation des cases
         for (int i = 0; i < this._nbLignes; i++)
@@ -164,20 +163,6 @@ public class Grille
         }
     }
 
-    /**
-     * Méthode permettant d'afficher dans la vue, l'indice montrant le nombre de mines à proximité de chaque case.
-     */
-/*    public void afficherCase()
-    {
-        for (int i = 0; i < this._nbLignes; i++)
-        {
-            for (int j = 0; j < this._nbColonnes; j++)
-            {
-                this._grille[i][j].nbMinesCase(i, j);
-            }
-        }
-    }
-*/
     /**
      * Méthode retournant le nombre de mines à proximité de la case dont les coordonnées sont passées en paramètre.
      * @param x indice de la ligne de la case
@@ -265,6 +250,10 @@ public class Grille
                     decouvrirCase(i,j);
             }
         }
+    }
+
+    public void gagne(){
+        toutDecouvrir();
     }
 
     public void decouvrirAutour(int x, int y){

@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package demineur.gui;
 
 import demineur.Demineur;
@@ -31,25 +26,11 @@ public class DemineurGui extends Demineur {
     public void nouvellePartie(int difficulte) throws MyException{
         _grille = setupGrille(difficulte);
         nouvellePartie();
-        /*
-        super.initialiser();
-        _vue.dispose();
-         _partie = new Partie(this);
-        _vue = new DemineurGuiVue(this,_grille,_partie);
-                                           *
-                                           */
     }
 
     public void nouvellePartie(int lignes,int colonnes,int mines)throws MyException{
         _grille = setupGrille(lignes,colonnes,mines);
         nouvellePartie();
-        /*
-        super.initialiser();
-        _vue.dispose();
-         _partie = new Partie(this);
-        _vue = new DemineurGuiVue(this,_grille,_partie);
-         *
-         */
     }
 
     public void decouvreCase(int x, int y) {
@@ -65,6 +46,10 @@ public class DemineurGui extends Demineur {
     public void perdu(){
         _grille.partiePerdue();
         _vue.get_grilleVue().partiePerdue();
+    }
+
+    public void gagne(){
+        _grille.gagne();
     }
 
     public static void main(String args[]){

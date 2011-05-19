@@ -91,6 +91,5 @@ public abstract class Demineur implements Commandes {
     }
 
     public abstract void nouvellePartie();
-//    public abstract void nouvellePartie(int difficulte) throws MyException;
     public abstract void decouvreCase(int x,int y);
 }

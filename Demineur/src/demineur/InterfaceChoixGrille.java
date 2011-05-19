@@ -1,7 +1,5 @@
 package demineur;
 
-import demineur.tools.MyException;
-
 /**
  *
  * @author Maxime GASTON, Alexis DEBERG
