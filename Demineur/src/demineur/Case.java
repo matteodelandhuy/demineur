@@ -111,12 +111,15 @@ public class Case
     @Override
     public String toString()
     {
+        if(this._decouvert != true)
+            return "     ?    ";
         if (this.get_mine() == true)
         {
-            return "CASE MINÉE";
-        } else
+            return "    O'    ";
+        }
+        else
         {
-            return "CASE   OK ";
+            return "     "+this._nbMinesProximite+"    ";
         }
     }
 }

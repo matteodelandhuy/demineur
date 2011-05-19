@@ -10,6 +10,7 @@ import demineur.Grille;
 import demineur.Partie;
 import demineur.tools.MyFrame;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import javax.swing.JFrame;
 /**
  *
@@ -41,6 +42,8 @@ public class DemineurGuiVue extends MyFrame{
         add(_grilleVue,BorderLayout.SOUTH);
         setProperties();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        this.setMinimumSize(new Dimension(100,100));
     }
 
     public GrilleVue get_grilleVue(){
@@ -49,6 +52,10 @@ public class DemineurGuiVue extends MyFrame{
 
     public void start(){
         _partieVue.demarrer();
+    }
+
+    public boolean isStarted(){
+        return _partieVue.isStarted();
     }
 
     public void perdu(){

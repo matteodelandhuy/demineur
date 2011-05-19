@@ -115,8 +115,11 @@ public class DemineurMenu extends JMenuBar implements InterfaceDemineurMenu {
 
         //Ajout des items du menu "?"
         JMenuItem aide = new JMenuItem("Aide");
+        JMenuItem about = new JMenuItem("A Propos");
         aide.addActionListener(new DemineurMenuCtrl(this,_parent,"Aide"));
+        about.addActionListener(new DemineurMenuCtrl(this,_parent,"About"));
         menuAide.add(aide);
+        menuAide.add(about);
     }
 
     public void nouvellePartie() {
@@ -124,7 +127,12 @@ public class DemineurMenu extends JMenuBar implements InterfaceDemineurMenu {
     }
 
     public void nouvellePartiePerso(int lig,int col,int mines){
-        _parent.nouvellePartie(lig, col, mines);
+        try{
+            _parent.nouvellePartie(lig, col, mines);
+        }
+        catch(MyException me){
+            me.show_erreur();
+        }
     }
 
     public Grille choixNiveau(int niveau) throws MyException {

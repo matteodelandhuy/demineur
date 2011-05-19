@@ -32,6 +32,8 @@ public class DemineurMenuCtrl implements ActionListener {
         try{
             if(_action.equalsIgnoreCase("aide"))
                 JOptionPane.showMessageDialog(new JFrame("Aide"), "Pouetpouet","Aide",JOptionPane.PLAIN_MESSAGE);
+            else if(_action.equalsIgnoreCase("about"))
+                JOptionPane.showMessageDialog(new JFrame("A propos"), "Demineur en Java\n\nProgramme & GUI par:\n\nDeberg Alexis et Maxime Gaston\nIUT Orsay\nTP APP-1","A Propos",JOptionPane.PLAIN_MESSAGE);
             else if(_action.equalsIgnoreCase(DemineurMenu.QUITTER))
                 System.exit(0);
             else if(_action.equalsIgnoreCase(DemineurMenu.NOUVELLE_PARTIE))

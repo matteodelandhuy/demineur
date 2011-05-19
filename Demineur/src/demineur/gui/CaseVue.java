@@ -21,18 +21,24 @@ public class CaseVue extends JButton {
     private Color _defaultColor;
 
     public CaseVue(int posX,int posY){
-        super(" ");
+        super("");
         _posX = posX;
         _posY = posY;
         this.setPreferredSize(new Dimension(this.WIDTH_CASE,this.HEIGHT_CASE));
         _defaultColor = this.getBackground();
     }
 
+    private void decouvrir(){
+         this.setEnabled(false);
+    }
+
     public void decouvrirVide(int num){
+        decouvrir();
         this.setText(""+num);
     }
 
     public void decouvrirMine(){
+        decouvrir();
         this.setBackground(Color.red);
         this.setText("M");
     }

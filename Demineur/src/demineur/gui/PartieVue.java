@@ -20,6 +20,7 @@ public class PartieVue extends JPanel implements ActionListener{
     private Partie _partie;
     private JLabel _tempsAffiche;
     private Timer _timer;
+    private boolean started = false;
 
     public PartieVue(Partie p){
         _partie = p;
@@ -31,6 +32,7 @@ public class PartieVue extends JPanel implements ActionListener{
 
     public void demarrer(){
         _timer.start();
+        started = true;
     }
 
     public void majAffichage(){
@@ -38,7 +40,12 @@ public class PartieVue extends JPanel implements ActionListener{
     }
 
     public void stop(){
+        started = false;
         _timer.stop();
+    }
+
+    public boolean isStarted(){
+        return started;
     }
 
     public void actionPerformed(ActionEvent e){

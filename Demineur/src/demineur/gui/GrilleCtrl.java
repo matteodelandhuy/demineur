@@ -21,8 +21,6 @@ public class GrilleCtrl implements MouseListener {
     private int _posX;
     private int _posY;
     private DemineurGuiVue _parentVue;
-    private static int nbCasesDecouvertes = 0;
-    private static boolean start = false;
 
     public GrilleCtrl(DemineurGuiVue p,Grille g, GrilleVue gv, int posX, int posY){
         _grille = g;
@@ -37,20 +35,22 @@ public class GrilleCtrl implements MouseListener {
     }
 */
     public void mouseClicked(MouseEvent e) {
-        if(!start){
+        if(!_parentVue.isStarted())
             _parentVue.start();
-            start = true;
-        }
 
         if(e.getButton() == e.BUTTON1){
             _grilleVue.decouvrirCase(_posX, _posY);
+            _grille.decouvrirCase(_posX, _posY);
+            
             if(_grille.get_case(_posX, _posY).get_mine())
-                this.partiePerdue();
-            else
-                nbCasesDecouvertes++;
-
-            if(nbCasesDecouvertes == (_grille.nbCases() - _grille.get_nbMines()))
-                this.partieGagnee();
+                partiePerdue();
+            else{
+                if(_grille.get_case(_posX, _posY).get_nbMinesProximite() == 0)
+                    decouvrirAutour(_posX,_posY);
+                if(_grille.get_nbCasesDecouvertes() == _grille.nbCases()-_grille.get_nbMines())
+                    partieGagnee();
+                System.out.println(""+_grille.get_nbCasesDecouvertes());
+            }
         }
         else if(e.getButton() == e.BUTTON3)
             _grilleVue.poserDrapeau(_posX, _posY);
@@ -80,5 +80,11 @@ public class GrilleCtrl implements MouseListener {
     private void partieGagnee(){
         _parentVue.gagne();
         JOptionPane.showMessageDialog(new JFrame("Gagné"), "Bravo !");
+    }
+
+    private void decouvrirAutour(int x,int y){
+        _grille.decouvrirAutour(x,y);
+        _grilleVue.decouvrirAutour(x,y);
+        //System.out.println(_grille);
     }
 }

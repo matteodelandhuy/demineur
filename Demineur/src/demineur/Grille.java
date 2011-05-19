@@ -82,6 +82,8 @@ public class Grille
      */
     private int _nbDrapeaux = 0;
 
+    private int _nbCasesDecouvertes = 0;
+
     private Demineur _controlleur;
 
     public Grille(Demineur ctrl)
@@ -228,6 +230,7 @@ public class Grille
 
     public void decouvrirCase(int x,int y){
         _grille[x][y].decouvrir();
+        _nbCasesDecouvertes++;
     }
 
     public int get_nbColonnes(){
@@ -251,13 +254,39 @@ public class Grille
         toutDecouvrir();
     }
 
+    public int get_nbCasesDecouvertes(){
+        return _nbCasesDecouvertes;
+    }
+
     private void toutDecouvrir(){
         for(int i=0;i<this._nbLignes;i++){
             for(int j=0;j<this._nbColonnes;j++){
                 if(!_grille[i][j].get_decouvert())
                     _grille[i][j].decouvrir();
+                    _nbCasesDecouvertes++;
             }
         }
+    }
+
+    public void decouvrirAutour(int x, int y){
+        if(_grille[x][y].get_nbMinesProximite() == 0){
+            for(int i=-1;i<=1;i++){
+                for(int j=-1;j<=1;j++){
+                    if(
+                            (x+i) >= 0 && (x+i)<_nbLignes &&
+                            (y+j)>=0 && (y+j)<_nbColonnes &&
+                            _grille[x+i][y+j].get_nbMinesProximite() == 0 &&
+                            !_grille[x+i][y+j].get_decouvert() &&
+                            !_grille[x+i][y+j].get_mine()
+                       ){
+                        _grille[x+i][y+j].decouvrir();
+                        _nbCasesDecouvertes++;
+                        decouvrirAutour(x+i,y+j);
+                    }
+                }
+            }
+        }
+        else if(!_grille[x][y].get_mine()) _grille[x][y].decouvrir();
     }
 
     /**

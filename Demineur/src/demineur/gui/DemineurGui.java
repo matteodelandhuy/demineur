@@ -6,6 +6,7 @@
 package demineur.gui;
 
 import demineur.Demineur;
+import demineur.Partie;
 import demineur.tools.MyException;
 
 /**
@@ -23,6 +24,7 @@ public class DemineurGui extends Demineur {
     public void nouvellePartie() {
         super.initialiser();
         _vue.dispose();
+        _partie = new Partie(this);
         _vue = new DemineurGuiVue(this,_grille,_partie);
     }
 
@@ -30,6 +32,7 @@ public class DemineurGui extends Demineur {
         _grille = setupGrille(difficulte);
         super.initialiser();
         _vue.dispose();
+         _partie = new Partie(this);
         _vue = new DemineurGuiVue(this,_grille,_partie);
     }
 
@@ -37,6 +40,7 @@ public class DemineurGui extends Demineur {
         _grille = setupGrille(lignes,colonnes,mines);
         super.initialiser();
         _vue.dispose();
+         _partie = new Partie(this);
         _vue = new DemineurGuiVue(this,_grille,_partie);
     }
 

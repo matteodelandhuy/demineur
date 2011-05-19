@@ -9,7 +9,7 @@ import demineur.gui.DemineurGui;
  */
 public class DemineurApp {
     public static void main(String args[]){
-        if(args.length < 2){
+        if(args.length < 1){
             System.out.println("usage: Demineur -mode\n");
             System.out.println("The [mode] argument can be one of the followings:");
             System.out.println(" gui    Graphical user interface");
