@@ -28,7 +28,6 @@ public class GrilleVue extends JPanel {
 
         GridLayout layout = new GridLayout(_grille.get_nbLignes(),_grille.get_nbColonnes());
         _buttons = new CaseVue[_grille.get_nbLignes()][_grille.get_nbColonnes()];
-
         setLayout(layout);
 
         for(int i=0;i<_grille.get_nbLignes();i++){

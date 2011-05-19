@@ -262,8 +262,7 @@ public class Grille
         for(int i=0;i<this._nbLignes;i++){
             for(int j=0;j<this._nbColonnes;j++){
                 if(!_grille[i][j].get_decouvert())
-                    _grille[i][j].decouvrir();
-                    _nbCasesDecouvertes++;
+                    decouvrirCase(i,j);
             }
         }
     }
@@ -272,21 +271,23 @@ public class Grille
         if(_grille[x][y].get_nbMinesProximite() == 0){
             for(int i=-1;i<=1;i++){
                 for(int j=-1;j<=1;j++){
-                    if(
-                            (x+i) >= 0 && (x+i)<_nbLignes &&
-                            (y+j)>=0 && (y+j)<_nbColonnes &&
+                    if((x+i)>= 0 && (x+i)<_nbLignes && (y+j)>=0 && (y+j)<_nbColonnes){
+                        if(
                             _grille[x+i][y+j].get_nbMinesProximite() == 0 &&
                             !_grille[x+i][y+j].get_decouvert() &&
                             !_grille[x+i][y+j].get_mine()
-                       ){
-                        _grille[x+i][y+j].decouvrir();
-                        _nbCasesDecouvertes++;
-                        decouvrirAutour(x+i,y+j);
+                           )
+                        {
+                            decouvrirCase(x+i,y+j);
+                            decouvrirAutour(x+i,y+j);
+                        }
+                        else if(!_grille[x+i][y+j].get_mine() && !_grille[x+i][y+j].get_decouvert()){
+                            decouvrirCase(x+i,y+j);
+                        }
                     }
                 }
             }
         }
-        else if(!_grille[x][y].get_mine()) _grille[x][y].decouvrir();
     }
 
     /**
