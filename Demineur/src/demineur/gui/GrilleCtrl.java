@@ -47,6 +47,7 @@ public class GrilleCtrl implements MouseListener {
             else{
                 if(_grille.get_case(_posX, _posY).get_nbMinesProximite() == 0)
                     decouvrirAutour(_posX,_posY);
+                System.out.println(_grille.get_nbCasesDecouvertes());
                 if(_grille.get_nbCasesDecouvertes() == _grille.nbCases()-_grille.get_nbMines())
                     partieGagnee();
                 System.out.println(""+_grille.get_nbCasesDecouvertes());

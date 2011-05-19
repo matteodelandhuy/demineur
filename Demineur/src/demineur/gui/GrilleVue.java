@@ -60,8 +60,6 @@ public class GrilleVue extends JPanel {
                 _buttons[x][y].decouvrirMine();
             else
                 _buttons[x][y].decouvrirVide(_grille.get_case(x,y).get_nbMinesProximite());
-
-            //_buttons[x][y].setEnabled(false);
         }
     }
 
@@ -70,12 +68,10 @@ public class GrilleVue extends JPanel {
             if(_grille.get_case(x, y).get_drapeau() == false){
                 _grille.get_case(x, y).set_drapeau(true);
                 _buttons[x][y].poserDrapeau();
-                //_buttons[x][y].setBackground(Color.orange);
             }
             else{
                 _grille.get_case(x, y).set_drapeau(false);
                 _buttons[x][y].enleverDrapeau();
-                //_buttons[x][y].setBackground(_defaultColor);
             }
         }
     }
