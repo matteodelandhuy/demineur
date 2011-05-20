@@ -26,4 +26,8 @@ public class Partie{
     public boolean get_resultat(){
         return _gagne;
     }
+
+    public void gagne(){
+        _gagne = true;
+    }
 }

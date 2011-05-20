@@ -15,6 +15,19 @@ import java.io.InputStreamReader;
  * @author alexis
  */
 public class UserInteraction {
+     /**
+     * Constante correspondant au nombre maximum de lignes que l'on peut saisir.
+     */
+    public static final int NB_MAX_LIGNES = 25;
+    /**
+    * Constante correspondant au nombre maximum de colonnes que l'on peut saisir.
+     */
+    public static final int NB_MAX_COLONNES = 25;
+    /**
+     * Constante correspondant au nombre maximum de mines que l'on peut saisir.
+     */
+    public static final int NB_MAX_MINES = 200;
+
     DemineurTxt _parent;
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -25,7 +38,7 @@ public class UserInteraction {
     public void menu(){
         boolean ok = false;
         System.out.println("" +
-                "1: Decouvrir une case   2: Poser un drapeau\n" +
+                "1: Decouvrir une case   2: Poser/Retirer un drapeau\n" +
                 "3: Nouvelle Partie     4: Autre   5: Quitter\n"
         );
         while(!ok){
@@ -49,11 +62,14 @@ public class UserInteraction {
                                 "6: nouvelle partie (facile)\n" +
                                 "7: nouvelle partie (moyen)\n" +
                                 "8: nouvelle partie (difficile)\n" +
-                                "9: Aide\n" +
-                                "10: A propos\n"
+                                "9: nouvelle partie (personnalisée)\n" +
+                                "10: Aide\n" +
+                                "11: A propos\n"
                         );
                         ok = false; break;
-                    case 5: _parent.quitter();
+                    case 5: 
+                        _parent.quitter();
+                        break;
                     case 6:
                         try{_parent.nouvellePartie(_parent.NIVEAU_FACILE);}
                         catch(MyException me){ ok = false; System.out.println(me.get_messageErreur()); }
@@ -66,8 +82,15 @@ public class UserInteraction {
                         try{_parent.nouvellePartie(_parent.NIVEAU_DIFFICILE);}
                         catch(MyException me){ ok = false; System.out.println(me.get_messageErreur()); }
                         break;
-                    case 9: break;
+                    case 9:
+                        int[] dim = inputDimensions();
+                        try{ _parent.nouvellePartie(dim[0], dim[1], dim[2]); }
+                        catch(MyException me){ ok = false; System.out.println(me.get_messageErreur()); }
+                        break;
                     case 10:
+
+                        break;
+                    case 11:
                         System.out.println("Demineur en Java\n\nProgramme & GUI par:\n\nDeberg Alexis et Maxime Gaston\nIUT Orsay\nTP APP-1");
                         ok = false; break;
                     default: throw new Exception("Choix invalide");
@@ -92,7 +115,7 @@ public class UserInteraction {
         while(!ok){
             ok = true;
             try{
-                System.out.print("Ligne :");
+                System.out.print("Ligne: ");
                 ligne = Integer.parseInt(br.readLine());
                 System.out.print("Colonne: ");
                 colonne = Integer.parseInt(br.readLine());
@@ -108,5 +131,52 @@ public class UserInteraction {
         caseChoisie[1] = colonne-1;
         
         return caseChoisie;
+    }
+
+    private int[] inputDimensions(){
+        boolean ok = false;
+        int[] dim = new int[3];
+        int lig = -1, col = -1, mines = -1;
+        while(!ok){
+            try{
+                System.out.print("Nombre de lignes: ");
+                lig = Integer.parseInt(br.readLine());
+                System.out.print("Nombre de colonnes: ");
+                col = Integer.parseInt(br.readLine());
+                System.out.print("Nombre de mines: ");
+                mines = Integer.parseInt(br.readLine());
+                if(verificationTaille(lig,col,mines))
+                    ok = true;
+                else
+                    System.out.println("Dimensions incorrectes");
+            }
+            catch(IOException ioe){ ok = false; System.out.println("Erreur de saisie");}
+            catch(Exception e){ ok = false; System.out.println(e.getMessage()); }
+        }
+        dim[0] = lig;
+        dim[1] = col;
+        dim[2] = mines;
+        return dim;
+    }
+
+    private boolean verificationTaille(int lig,int col,int mines){
+        if(
+                lig > 0 &&
+                lig < NB_MAX_LIGNES &&
+                col > 0 &&
+                col < NB_MAX_COLONNES &&
+                mines > 0 &&
+                mines < NB_MAX_MINES
+        )
+            return true;
+        return false;
+    }
+
+    public boolean rejouer(String msg){
+        System.out.print("Vous avez " + msg +"\nRejouer ? (O/N)");
+        boolean rejouer = false;
+        try{ rejouer = br.readLine().equalsIgnoreCase("O"); }
+        catch(IOException ioe){ System.out.println("Erreur de saisie"); }
+        return rejouer;
     }
 }

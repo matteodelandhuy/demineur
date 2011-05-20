@@ -14,7 +14,9 @@ import demineur.tools.MyException;
  * @author alexis
  */
 public class DemineurTxt extends Demineur {
-    UserInteraction input;
+    private UserInteraction input;
+    private boolean jouer = true;
+    private boolean mine = false;
 
     public DemineurTxt(){
         super();
@@ -22,19 +24,27 @@ public class DemineurTxt extends Demineur {
     }
 
     private void jouer(){
+        jouer = true; mine = false;
         input = new UserInteraction(this);
         int[] caseChoisie = new int[2];
-        int choixMenu;
+        int choixMenu; boolean rejouer = false;
 
-        while(!_partie.get_resultat()){
+        while(jouer){
             System.out.println(_grille);
-            input.menu();
+
+            if(!mine && !_partie.get_resultat()) input.menu();
+            else{
+                String msg = "perdu";
+                if(!mine) msg = "gagné";
+                if(!input.rejouer(msg)) quitter();
+                else nouvellePartie();
+            }
         }
     }
 
     public void nouvellePartie() {
+         _partie = new Partie(this);
         super.initialiser();
-        _partie = new Partie(this);
         jouer();
     }
 
@@ -51,7 +61,18 @@ public class DemineurTxt extends Demineur {
     }
 
     public void decouvreCase(int x, int y) {
-        _grille.decouvrirCase(x, y);
+        if(!_grille.get_case(x, y).get_drapeau()){
+            _grille.decouvrirCase(x, y);
+
+            if(_grille.get_case(x, y).get_mine()){
+                perdu();
+            }
+            else if(_grille.get_case(x,y).get_nbMinesProximite() == 0)
+                _grille.decouvrirAutour(x, y);
+
+            if(_grille.get_nbCasesDecouvertes() == _grille.nbCases())
+                gagne();
+        }
     }
 
     public void majDrapeau(int x, int y) {
@@ -59,10 +80,13 @@ public class DemineurTxt extends Demineur {
     }
 
     public void perdu() {
+        mine = true;
+        _partie.gagne();
         _grille.partiePerdue();
     }
 
     public void gagne() {
+        _partie.gagne();
         _grille.gagne();
     }
 

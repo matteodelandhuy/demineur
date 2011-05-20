@@ -1,4 +1,4 @@
-package demineur;
+package main;
 
 import demineur.txt.DemineurTxt;
 import demineur.gui.DemineurGui;
@@ -7,7 +7,7 @@ import demineur.gui.DemineurGui;
  *
  * @author alexis
  */
-public class DemineurApp {
+public class main {
     public static void main(String args[]){
         if(args.length < 1){
             System.out.println("usage: Demineur -mode\n");

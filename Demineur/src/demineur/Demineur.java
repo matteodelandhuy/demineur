@@ -24,7 +24,6 @@ public abstract class Demineur implements Commandes {
      */
 
     protected Grille _grille;
-    protected DemineurApp _application;
     protected Partie _partie;
 
     public Demineur(int nbLignes, int nbColonnes, int nbMines)throws MyException{

@@ -227,7 +227,6 @@ public class Grille
     }
 
     public Case get_case(int x, int y){
-        //return new Case(true);
         return _grille[x][y];
     }
 
