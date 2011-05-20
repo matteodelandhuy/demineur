@@ -90,6 +90,5 @@ public abstract class Demineur implements Commandes {
         _partie = new Partie(this);
     }
 
-    public abstract void nouvellePartie();
-    public abstract void decouvreCase(int x,int y);
+    public abstract void gagne();
 }

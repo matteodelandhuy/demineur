@@ -111,15 +111,10 @@ public class Case
     @Override
     public String toString()
     {
-        if(this._decouvert != true)
-            return "     ?    ";
-        if (this.get_mine() == true)
-        {
-            return "    O'    ";
-        }
-        else
-        {
-            return "     "+this._nbMinesProximite+"    ";
-        }
+        if(_drapeau) return "!";
+        else if(_decouvert != true) return "?";
+        else if (get_mine() == true) return "X";
+        else if(_nbMinesProximite > 0) return ""+_nbMinesProximite;
+        else return ".";
     }
 }
