@@ -9,7 +9,7 @@ import demineur.tools.MyException;
  * @author alexis
  */
 public class DemineurGui extends Demineur {
-    DemineurGuiVue _vue;
+    private DemineurGuiVue _vue;
 
     public DemineurGui(){
         super();
@@ -50,9 +50,5 @@ public class DemineurGui extends Demineur {
 
     public void gagne(){
         _grille.gagne();
-    }
-
-    public static void main(String args[]){
-        DemineurGui d = new DemineurGui();
     }
 }

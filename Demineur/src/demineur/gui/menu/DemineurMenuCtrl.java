@@ -13,9 +13,9 @@ import javax.swing.JOptionPane;
  * @author alexis
  */
 public class DemineurMenuCtrl implements ActionListener {
-    DemineurGui _demineur;
-    DemineurMenu _menu;
-    String _action;
+    private DemineurGui _demineur;
+    private DemineurMenu _menu;
+    private String _action;
 
     public DemineurMenuCtrl(DemineurMenu menu,DemineurGui d, String a){
         _demineur = d;

@@ -12,8 +12,8 @@ import javax.swing.JButton;
  * @author alexis
  */
 public class CaseVue extends JButton {
-    public final int WIDTH_CASE = 25;
-    public final int HEIGHT_CASE = 25;
+    public static final int WIDTH_CASE = 25;
+    public static final int HEIGHT_CASE = 25;
     private int _posX;
     private int _posY;
     private Color _defaultColor;

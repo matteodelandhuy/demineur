@@ -70,6 +70,7 @@ public class DemineurTxt extends Demineur {
             else if(_grille.get_case(x,y).get_nbMinesProximite() == 0)
                 _grille.decouvrirAutour(x, y);
 
+// TODO mauvais calcul
             if(_grille.get_nbCasesDecouvertes() == _grille.nbCases())
                 gagne();
         }
@@ -81,7 +82,6 @@ public class DemineurTxt extends Demineur {
 
     public void perdu() {
         mine = true;
-        _partie.gagne();
         _grille.partiePerdue();
     }
 

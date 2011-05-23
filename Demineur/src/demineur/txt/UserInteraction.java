@@ -2,34 +2,21 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package demineur.txt;
 
+import demineur.Grille;
 import demineur.tools.MyException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+// TODO Implémenter InterfaceChoixGrille et InterfaceDemineurMenu
 /**
  *
  * @author alexis
  */
 public class UserInteraction {
-     /**
-     * Constante correspondant au nombre maximum de lignes que l'on peut saisir.
-     */
-    public static final int NB_MAX_LIGNES = 25;
-    /**
-    * Constante correspondant au nombre maximum de colonnes que l'on peut saisir.
-     */
-    public static final int NB_MAX_COLONNES = 25;
-    /**
-     * Constante correspondant au nombre maximum de mines que l'on peut saisir.
-     */
-    public static final int NB_MAX_MINES = 200;
-
-    DemineurTxt _parent;
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    private DemineurTxt _parent;
+    private BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
     public UserInteraction(DemineurTxt d){
         _parent = d;
@@ -107,7 +94,7 @@ public class UserInteraction {
         }
     }
 
-    public int[] inputCase(){
+    private int[] inputCase(){
         boolean ok = false;
         int[] caseChoisie = new int[2];
         int ligne = -1,colonne = -1;
@@ -162,11 +149,11 @@ public class UserInteraction {
     private boolean verificationTaille(int lig,int col,int mines){
         if(
                 lig > 0 &&
-                lig < NB_MAX_LIGNES &&
+                lig < Grille.NB_MAX_LIGNES &&
                 col > 0 &&
-                col < NB_MAX_COLONNES &&
+                col < Grille.NB_MAX_COLONNES &&
                 mines > 0 &&
-                mines < NB_MAX_MINES
+                mines < Grille.NB_MAX_MINES
         )
             return true;
         return false;

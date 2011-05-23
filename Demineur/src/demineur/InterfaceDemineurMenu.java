@@ -1,7 +1,7 @@
 package demineur;
 
 import demineur.tools.MyException;
-
+// TODO A completer
 
 /**
  * Interface permettant de définir les différentes méthodes utilisées par les items du menu Partie.

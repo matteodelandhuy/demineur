@@ -1,5 +1,6 @@
 package demineur.gui.menu;
-
+// TODO verif* en public ????
+import demineur.Grille;
 import demineur.InterfaceChoixGrille;
 import demineur.tools.MyException;
 import demineur.tools.MyFrame;
@@ -19,19 +20,6 @@ import javax.swing.JTextField;
  */
 public class PersonaliserGrilleVue extends MyFrame implements InterfaceChoixGrille,ActionListener
 {
-
-    /**
-     * Constante correspondant au nombre maximum de lignes que l'on peut saisir.
-     */
-    public static final int NB_MAX_LIGNES = 25;
-    /**
-* Constante correspondant au nombre maximum de colonnes que l'on peut saisir.
-     */
-    public static final int NB_MAX_COLONNES = 25;
-    /**
-     * Constante correspondant au nombre maximum de mines que l'on peut saisir.
-     */
-    public static final int NB_MAX_MINES = 200;
     /**
      * Constante correspondant au nom de la fenêtre.
      */
@@ -121,9 +109,9 @@ public class PersonaliserGrilleVue extends MyFrame implements InterfaceChoixGril
         if(_nbLignes.getText().isEmpty() || _nbColonnes.getText().isEmpty() || _nbMines.getText().isEmpty())
                 return false;
 
-        if ((Integer.parseInt(this._nbLignes.getText()) > PersonaliserGrilleVue.NB_MAX_LIGNES) || (Integer.parseInt(this._nbLignes.getText()) <= 0)
-                || (Integer.parseInt(this._nbColonnes.getText()) > PersonaliserGrilleVue.NB_MAX_COLONNES) || (Integer.parseInt(this._nbColonnes.getText()) <= 0)
-                || (Integer.parseInt(this._nbMines.getText()) > PersonaliserGrilleVue.NB_MAX_MINES) || (Integer.parseInt(this._nbMines.getText()) <= 0))
+        if ((Integer.parseInt(this._nbLignes.getText()) > Grille.NB_MAX_LIGNES) || (Integer.parseInt(this._nbLignes.getText()) <= 0)
+                || (Integer.parseInt(this._nbColonnes.getText()) > Grille.NB_MAX_COLONNES) || (Integer.parseInt(this._nbColonnes.getText()) <= 0)
+                || (Integer.parseInt(this._nbMines.getText()) > Grille.NB_MAX_MINES) || (Integer.parseInt(this._nbMines.getText()) <= 0))
         {
             return false;
         }

@@ -30,7 +30,7 @@ public class PartieVue extends JPanel implements ActionListener{
         started = true;
     }
 
-    public void majAffichage(){
+    private void majAffichage(){
         _tempsAffiche.setText(""+_partie.get_temps());
     }
 
