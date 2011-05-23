@@ -82,8 +82,6 @@ public class Grille
      */
     private int _nbDrapeaux = 0;
 
-    private int _nbCasesDecouvertes = 0;
-
     private Demineur _controlleur;
 
     public Grille(Demineur ctrl)
@@ -215,7 +213,6 @@ public class Grille
 
     public void decouvrirCase(int x,int y){
         _grille[x][y].decouvrir();
-        _nbCasesDecouvertes++;
     }
 
     public int get_nbColonnes(){
@@ -239,7 +236,12 @@ public class Grille
     }
 
     public int get_nbCasesDecouvertes(){
-        return _nbCasesDecouvertes;
+        int n = 0;
+        for(int i=0;i<_nbLignes;i++){
+            for(int j=0;j<_nbColonnes;j++)
+                if(_grille[i][j].get_decouvert()) n++;
+        }
+        return n;
     }
 
     private void toutDecouvrir(){

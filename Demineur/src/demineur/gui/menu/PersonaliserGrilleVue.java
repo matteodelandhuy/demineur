@@ -1,5 +1,5 @@
 package demineur.gui.menu;
-// TODO verif* en public ????
+
 import demineur.Grille;
 import demineur.InterfaceChoixGrille;
 import demineur.tools.MyException;

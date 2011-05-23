@@ -35,10 +35,9 @@ public class DemineurGuiVue extends MyFrame{
         add(_menu,BorderLayout.NORTH);
         add(_partieVue);
         add(_grilleVue,BorderLayout.SOUTH);
-        setProperties();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        this.setMinimumSize(new Dimension(100,100));
+        setMinimumSize(new Dimension(100,100));
+        setProperties();
     }
 
     public GrilleVue get_grilleVue(){

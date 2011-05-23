@@ -1,8 +1,6 @@
 package demineur;
 
 import demineur.tools.MyException;
-// TODO A completer
-
 /**
  * Interface permettant de définir les différentes méthodes utilisées par les items du menu Partie.
  * @author Maxime GASTON, Alexis DEBERG
@@ -15,6 +13,9 @@ public interface InterfaceDemineurMenu
      * @return
      */
     public void nouvellePartie();
+
+    public void nouvellePartiePerso(int lig,int col,int mines);
+
     /**
      * Méthode permettant de choisir un nveau de difficulté.
      * @param niveau difficulté choisie : 1 = facile, 2 = moyen, 3 = difficile
@@ -25,6 +26,8 @@ public interface InterfaceDemineurMenu
      * Méthode permettant d'appeler la fenêtre de choix des dimensions de la Grille (pour un partie personalisée).
      */
     public void choisirDimensions();
+
+    public void meilleurs_scores();
     /**
      * Méthode permettant de quitter l'application.
      */

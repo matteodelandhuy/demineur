@@ -26,7 +26,7 @@ public class DemineurMenuCtrl implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         try{
             if(_action.equalsIgnoreCase("aide"))
-                JOptionPane.showMessageDialog(new JFrame("Aide"), "Pouetpouet","Aide",JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(new JFrame("Aide"), "Clic Clic pour découvrir des cases...","Aide",JOptionPane.PLAIN_MESSAGE);
             else if(_action.equalsIgnoreCase("about"))
                 JOptionPane.showMessageDialog(new JFrame("A propos"), "Demineur en Java\n\nProgramme & GUI par:\n\nDeberg Alexis et Maxime Gaston\nIUT Orsay\nTP APP-1","A Propos",JOptionPane.PLAIN_MESSAGE);
             else if(_action.equalsIgnoreCase(DemineurMenu.QUITTER))
@@ -41,6 +41,8 @@ public class DemineurMenuCtrl implements ActionListener {
                 _demineur.nouvellePartie(Demineur.NIVEAU_DIFFICILE);
             else if(_action.equalsIgnoreCase(DemineurMenu.PERSONALISER))
                 _menu.choisirDimensions();
+            else if(_action.equalsIgnoreCase("Scores"))
+                _menu.meilleurs_scores();
         }
         catch(MyException me){
             me.show_erreur();

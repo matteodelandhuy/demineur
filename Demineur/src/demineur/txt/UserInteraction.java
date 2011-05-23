@@ -5,11 +5,12 @@
 package demineur.txt;
 
 import demineur.Grille;
+import demineur.Score;
 import demineur.tools.MyException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-// TODO Implémenter InterfaceChoixGrille et InterfaceDemineurMenu
+
 /**
  *
  * @author alexis
@@ -50,8 +51,9 @@ public class UserInteraction {
                                 "7: nouvelle partie (moyen)\n" +
                                 "8: nouvelle partie (difficile)\n" +
                                 "9: nouvelle partie (personnalisée)\n" +
-                                "10: Aide\n" +
-                                "11: A propos\n"
+                                "10: Meilleurs scores\n" +
+                                "11: Aide\n" +
+                                "12: A propos\n"
                         );
                         ok = false; break;
                     case 5: 
@@ -75,11 +77,22 @@ public class UserInteraction {
                         catch(MyException me){ ok = false; System.out.println(me.get_messageErreur()); }
                         break;
                     case 10:
-
+                        System.out.println("---- Meilleurs Scores ----");
+                        for(Score s:_parent.get_partie().getScores())
+                            System.out.println(s);
+                        System.out.println();
+                        System.out.println("13 : Effacer les scores");
+                        System.out.println("---------------------------");
                         break;
                     case 11:
+                        System.out.println("il suffit de savoir lire...");
+                        break;
+                    case 12:
                         System.out.println("Demineur en Java\n\nProgramme & GUI par:\n\nDeberg Alexis et Maxime Gaston\nIUT Orsay\nTP APP-1");
                         ok = false; break;
+                    case 13:
+                        _parent.get_partie().effacerScores();
+                        break;
                     default: throw new Exception("Choix invalide");
                 }
             }
@@ -160,7 +173,7 @@ public class UserInteraction {
     }
 
     public boolean rejouer(String msg){
-        System.out.print("Vous avez " + msg +"\nRejouer ? (O/N)");
+        System.out.print("Vous avez " + msg +" en "+_parent.get_partie().get_temps()+" secondes\nRejouer ? (O/N)");
         boolean rejouer = false;
         try{ rejouer = br.readLine().equalsIgnoreCase("O"); }
         catch(IOException ioe){ System.out.println("Erreur de saisie"); }

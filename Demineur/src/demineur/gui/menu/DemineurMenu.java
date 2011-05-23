@@ -65,6 +65,8 @@ public class DemineurMenu extends JMenuBar implements InterfaceDemineurMenu {
      */
     private JMenuItem _quitter;
 
+    private JMenuItem _scores;
+
 
     DemineurGui _parent;
 
@@ -108,6 +110,10 @@ public class DemineurMenu extends JMenuBar implements InterfaceDemineurMenu {
         _quitter.addActionListener(new DemineurMenuCtrl(this,_parent,DemineurMenu.QUITTER));
         menuPartie.add(_quitter);
 
+        _scores = new JMenuItem("Meilleurs scores");
+        _scores.addActionListener(new DemineurMenuCtrl(this,_parent,"Scores"));
+        menuAide.add(_scores);
+
         //Ajout des items du menu "?"
         JMenuItem aide = new JMenuItem("Aide");
         JMenuItem about = new JMenuItem("A Propos");
@@ -146,6 +152,10 @@ public class DemineurMenu extends JMenuBar implements InterfaceDemineurMenu {
 
     public void choisirDimensions() {
         PersonaliserGrilleVue choixGrille = new PersonaliserGrilleVue(this);
+    }
+
+    public void meilleurs_scores(){
+        VoirScores v = new VoirScores(_parent);
     }
 
     public void quitter() {

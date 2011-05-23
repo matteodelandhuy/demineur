@@ -10,6 +10,7 @@ import demineur.tools.MyException;
  */
 public class DemineurGui extends Demineur {
     private DemineurGuiVue _vue;
+    private int niveau;
 
     public DemineurGui(){
         super();
@@ -18,17 +19,20 @@ public class DemineurGui extends Demineur {
 
     public void nouvellePartie() {
         super.initialiser();
-        _vue.dispose();
         _partie = new Partie(this);
+        _partie.setNiveau(niveau);
+        _vue.dispose();
         _vue = new DemineurGuiVue(this,_grille,_partie);
     }
 
     public void nouvellePartie(int difficulte) throws MyException{
+        niveau = difficulte;
         _grille = setupGrille(difficulte);
         nouvellePartie();
     }
 
     public void nouvellePartie(int lignes,int colonnes,int mines)throws MyException{
+        niveau = Demineur.NIVEAU_PERSO;
         _grille = setupGrille(lignes,colonnes,mines);
         nouvellePartie();
     }
@@ -49,6 +53,10 @@ public class DemineurGui extends Demineur {
     }
 
     public void gagne(){
+       if(_partie.isHighScore())
+       {AjoutScore as = new AjoutScore(this);}
+
+       try{ _partie.sauverScores();} catch(MyException me){me.show_erreur();}
         _grille.gagne();
     }
 }

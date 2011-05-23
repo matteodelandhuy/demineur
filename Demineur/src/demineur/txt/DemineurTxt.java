@@ -8,18 +8,23 @@ package demineur.txt;
 import demineur.Demineur;
 import demineur.Partie;
 import demineur.tools.MyException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 
 /**
  *
  * @author alexis
  */
-public class DemineurTxt extends Demineur {
+public class DemineurTxt extends Demineur implements ActionListener{
     private UserInteraction input;
     private boolean jouer = true;
     private boolean mine = false;
+    private Timer _timer;
 
     public DemineurTxt(){
         super();
+        _timer = new Timer(Partie.DELAY,this);
         jouer();
     }
 
@@ -28,7 +33,7 @@ public class DemineurTxt extends Demineur {
         input = new UserInteraction(this);
         int[] caseChoisie = new int[2];
         int choixMenu; boolean rejouer = false;
-
+        _timer.start();
         while(jouer){
             System.out.println(_grille);
 
@@ -70,8 +75,7 @@ public class DemineurTxt extends Demineur {
             else if(_grille.get_case(x,y).get_nbMinesProximite() == 0)
                 _grille.decouvrirAutour(x, y);
 
-// TODO mauvais calcul
-            if(_grille.get_nbCasesDecouvertes() == _grille.nbCases())
+            if(_grille.get_nbCasesDecouvertes() == _grille.nbCases()-_grille.get_nbMines())
                 gagne();
         }
     }
@@ -82,12 +86,19 @@ public class DemineurTxt extends Demineur {
 
     public void perdu() {
         mine = true;
+        _timer.stop();
         _grille.partiePerdue();
     }
 
     public void gagne() {
         _partie.gagne();
         _grille.gagne();
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == _timer)
+            _partie.majTemps();
+            System.out.println(_partie.get_temps());
     }
 
 }
